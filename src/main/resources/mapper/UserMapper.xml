@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http : //mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--namespace属性:用于指定当前的映射文件和哪个接口进行映射，需要指定接口的文件路径，需要标注包的完整路径接口-->
+<mapper namespace="com.hgy.storeproject.mapper.UserMapper">
+    <!--自定义映射规则: resultMap标签来完成映射规则的定义上-->
+    <!--
+        id属性:标签给这个映射负责分配一个唯一的id值，对应的就是resultHap="id属性的值"属性的取值
+        type属性:取值是一个类，表示的是数据库中的查询结果与Java中哪个实体类进行结果集的映射
+    -->
+    <resultMap id="UserEntityMap" type="com.hgy.storeproject.entity.User">
+        <!--将表的资源和类(实体类)的属性不一致的字段进行匹配指定，名称一致的字段可以省略不写-->
+        <!--配合完成名称不一致的映射:
+            column属性:表示表中的资源名称
+            property属性:表示类中的属性名称
+        -->
+        <!--在定义映射规则时主键是不可以省略的-->
+        <id column="uid" property="uid"/>
+        <result column="created_time" property="createdTime"/>
+        <result column="created_user" property="createdUser"/>
+        <result column="modified_time" property="modifiedTime"/>
+        <result column="modified_user" property="modifiedUser"/>
+    </resultMap>
+
+    <!--id属性:表示映射的接口中方法的名称，直接在标签的内容部来编写SQL语句-->
+    <!--
+        useGeneratedKeys属性:表示开启某个字段的值递增（主键设置为递增)
+        keyProperty属性:标签将表中的哪个字段作为主键进行递增
+    -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="uid">
+        INSERT INTO
+        users (username, password, phone, email, salt, gender, created_time, created_user, modified_time, modified_user)
+        VALUES
+        (#{username}, #{password}, #{phone}, #{email}, #{salt}, #{gender}, #{createdTime}, #{createdUser}, #{modifiedTime}, #{modifiedUser})
+    </insert>
+
+    <!-- 根据用户名查询用户数据：User findByUsername(String username) -->
+    <select id="findByUsername" resultMap="UserEntityMap">
+        SELECT * FROM users WHERE username = #{username}
+    </select>
+
+    <select id="selectAllUsers" resultMap="UserEntityMap">
+        SELECT * FROM users
+    </select>
+
+    <!-- 根据uid更新用户的密码：
+	     Integer updatePasswordByUid(
+		    @Param("uid") Integer uid,
+		    @Param("password") String password,
+		    @Param("modifiedUser") String modifiedUser,
+		    @Param("modifiedTime") Date modifiedTime) -->
+    <update id="updatePasswordByUid">
+        UPDATE users SET password = #{password},
+        modified_user = #{modifiedUser},
+        modified_time = #{modifiedTime}
+        WHERE uid = #{uid}
+    </update>
+
+    <select id="findByUid" resultMap="UserEntityMap">
+        SELECT * FROM users WHERE uid = #{uid}
+    </select>
+
+    <!-- 根据uid更新用户个人资料：Integer updateInfoByUid(User user) -->
+    <update id="updateInfoByUid">
+        UPDATE
+        t_user
+        SET
+        <!--if表示条件判断标签，test 接收的是- -个返回值为boolean类型的条件,
+              如果test条件的结果为true则执行if标签内部的语句-->
+        <if test="phone != null">phone = #{phone},</if>
+        <if test="email != null">email = #{email},</if>
+        <if test="gender != null">gender = #{gender},</if>
+        modified_user = #{modifiedUser},
+        modified_time = #{modifiedTime}
+        WHERE
+        uid = #{uid}
+    </update>
+
+    <!-- 根据uid更新用户的头像
+	     Integer updateAvatarByUid(
+		    @Param("uid") Integer uid,
+		    @Param("avatar") String avatar,
+		    @Param("modifiedUser") String modifiedUser,
+		    @Param("modifiedTime") Date modifiedTime) -->
+    <update id="updateAvatarByUid">
+        UPDATE
+        t_user
+        SET
+        avatar = #{avatar},
+        modified_user = #{modifiedUser},
+        modified_time = #{modifiedTime}
+        WHERE
+        uid = #{uid}
+    </update>
+</mapper>
