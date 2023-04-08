@@ -1450,7 +1450,7 @@ thead th {
     right: 0;
     left: 0;
     z-index: 99;
-    background-color: var(--secondary);
+    background-color: var(--white);
     height: 80px;
 	-webkit-box-shadow: 0 0 20px rgb(89 102 122 / 10%);
     box-shadow: 0 0 20px rgb(89 102 122 / 10%);
@@ -1486,6 +1486,7 @@ thead th {
 
 .admin-logo img {
     max-width: 200px;
+    max-height: 80px;
 }
 
 .header-right {
