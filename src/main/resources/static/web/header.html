@@ -95,6 +95,7 @@
                 $("#count").html(count);
             },
             error : function (xhr) {
+                //未登录时会报错，所以直接不显示错误信息，登录了就好了
                 // alert("购物车列表数据加载产生未知异常，" + xhr.status);
             }
         });
@@ -110,6 +111,7 @@
                 $("#username").html(username);
             },
             error : function (xhr) {
+                //未登录时会报错，所以直接不显示错误信息，登录了就好了
                 // alert("用户姓名加载产生未知异常，" + xhr.status);
             }
         });
