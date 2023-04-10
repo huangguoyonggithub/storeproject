@@ -93,4 +93,9 @@
         WHERE
         uid = #{uid}
     </update>
+
+    <!-- 根据用户email查询用户数据：User findByEmail(String email) -->
+    <select id="findByEmail" resultMap="UserEntityMap">
+        SELECT * FROM users WHERE email = #{email}
+    </select>
 </mapper>

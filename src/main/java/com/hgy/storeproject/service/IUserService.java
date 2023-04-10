@@ -32,4 +32,11 @@ public interface IUserService {
      * @return 当前登录的用户的信息
      */
     User getByUid(Integer uid);
+
+    /**
+     * 获取用户的信息
+     * @param email 用户的email
+     * @return 当用户的信息
+     */
+    User getByEmail(String email);
 }

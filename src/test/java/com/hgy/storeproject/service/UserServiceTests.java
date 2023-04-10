@@ -63,4 +63,16 @@ public class UserServiceTests {
         }
     }
 
+    @Test
+    public void getByEmail() {
+        try {
+            String email = "25555555555qq.xom";
+            User user = userService.getByEmail(email);
+            System.out.println(user);
+        } catch (ServiceException e) {
+            System.out.println(e.getClass().getSimpleName());
+            System.out.println(e.getMessage());
+        }
+    }
+
 }

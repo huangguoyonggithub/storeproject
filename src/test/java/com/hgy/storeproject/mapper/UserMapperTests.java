@@ -35,7 +35,7 @@ public class UserMapperTests {
     }
 
     @Test
-    public void findByUsername() {
+    public void selectByUsername() {
         String username = "user02";
         User result = userMapper.findByUsername(username);
         System.out.println(result);
@@ -48,7 +48,7 @@ public class UserMapperTests {
     }
 
     @Test
-    public void findByUid(){
+    public void selectByUid(){
         System.out.println(userMapper.findByUid(7));
     }
 
@@ -59,5 +59,12 @@ public class UserMapperTests {
         for (User item : list) {
             System.out.println(item);
         }
+    }
+
+    @Test
+    public void selectByEmail() {
+        String email = "25555555555qq.xom";
+        User result = userMapper.findByEmail(email);
+        System.out.println(result);
     }
 }

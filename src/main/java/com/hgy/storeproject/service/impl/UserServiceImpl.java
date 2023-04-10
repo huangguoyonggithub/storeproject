@@ -136,6 +136,26 @@ public class UserServiceImpl implements IUserService {
 
     }
 
+    @Override
+    public User getByEmail(String email) {
+        User result = userMapper.findByEmail(email);
+
+        if (result == null){
+            throw new UserNotFoundException("该email没有被注册！");
+        }
+
+        // 创建新的User对象
+        User user = new User();
+        // 将以上查询结果中的username/phone/email/gender封装到新User对象中
+        user.setUsername(result.getUsername());
+        user.setPhone(result.getPhone());
+        user.setEmail(result.getEmail());
+        user.setGender(result.getGender());
+
+        // 返回新的User对象
+        return user;
+    }
+
     /**
      * 执行密码加密,定义一个MD5算法的加密处理
      * @param password 原始密码
@@ -154,4 +174,6 @@ public class UserServiceImpl implements IUserService {
         }
         return password;
     }
+
+
 }

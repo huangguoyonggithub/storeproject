@@ -30,6 +30,13 @@ public interface UserMapper {
     User findByUid(Integer uid);
 
     /**
+     * 根据用户email查询用户的数据
+     * @param email 用户email
+     * @return 如果找到返回对象，反之返回null
+     */
+    User findByEmail(String email);
+
+    /**
      *根据用户的uid来修改用户的密码
      * @param uid 用户id
      * @param password 用户输入的新密码
