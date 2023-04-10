@@ -79,6 +79,15 @@ public class CartServiceImpl implements ICartService {
         return cartMapper.findVOByUid(uid);
     }
 
+    @Override
+    public Integer getCountByUid(Integer uid) {
+        User result = userService.getByUid(uid);
+        if (result == null){
+            throw new AccessDeniedException("用户登录过时,请重新登录");
+        }
+        return cartMapper.findCountByUid(uid);
+    }
+
 
     @Override
     public void deleteCartVOByCid(Integer cid) {

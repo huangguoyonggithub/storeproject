@@ -77,4 +77,13 @@ public class UserController extends BaseController{
         return new JsonResult<User>(OK, data);
     }
 
+    @RequestMapping("get_username")
+    public JsonResult<String> getUsername(HttpSession session) {
+        // 从HttpSession对象中获取username
+        String data = getUsernameFromSession(session);
+
+        // 响应成功和数据
+        return new JsonResult<String>(OK, data);
+    }
+
 }

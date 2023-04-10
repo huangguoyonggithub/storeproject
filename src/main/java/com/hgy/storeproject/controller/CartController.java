@@ -39,6 +39,16 @@ public class CartController extends BaseController{
         return new JsonResult<List<CartVO>>(OK, data);
     }
 
+    @RequestMapping("count")
+    public JsonResult<Integer> getCountByUid(HttpSession session) {
+        // 从Session中获取uid
+        Integer uid = getUidFromSession(session);
+        // 调用业务对象执行查询数据
+        Integer data = cartService.getCountByUid(uid);
+        // 返回成功与数据
+        return new JsonResult<Integer>(OK,data);
+    }
+
     @RequestMapping("{cid}/delete_cart")
     public JsonResult<Void> DeleteCart(@PathVariable("cid") Integer cid) {
         // 调用业务对象执行添加到购物车

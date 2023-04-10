@@ -57,6 +57,12 @@ public class CartMapperTests {
     }
 
     @Test
+    public void findCountByUid() {
+        Integer count = cartMapper.findCountByUid(6);
+        System.out.println(count);
+    }
+
+    @Test
     public void findVOByCid() {
         CartVO cart = cartMapper.findVOByCid(2);
         System.out.println(cart);

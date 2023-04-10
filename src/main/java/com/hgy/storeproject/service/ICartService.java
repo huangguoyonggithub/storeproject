@@ -22,6 +22,13 @@ public interface ICartService {
     List<CartVO> getVOByUid(Integer uid);
 
     /**
+     * 查询某用户的购物车列表数量
+     * @param uid 用户id
+     * @return 该用户的购物车列表数量
+     */
+    Integer getCountByUid(Integer uid);
+
+    /**
      * 根据cid删除购物车数据
      * @param cid 购物车id
      */

@@ -47,6 +47,13 @@ public interface CartMapper {
     List<CartVO> findVOByUid(Integer uid);
 
     /**
+     * 查询某用户的购物车列表数量
+     * @param uid 用户id
+     * @return 该用户的购物车列表数量
+     */
+    Integer findCountByUid(Integer uid);
+
+    /**
      * 查询某购物车数据
      * @param cid 购物车id
      * @return 该购物车数据

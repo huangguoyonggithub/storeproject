@@ -52,4 +52,9 @@
     <delete id="deleteCartVOByCid">
         DELETE FROM cart WHERE cid = #{cid}
     </delete>
+
+    <!-- 统计某用户的收货地址数据的数量：Integer findCountByUid(Integer uid) -->
+    <select id="findCountByUid" resultType="java.lang.Integer">
+        SELECT count(*) from cart where uid=#{uid}
+    </select>
 </mapper>
