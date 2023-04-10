@@ -98,4 +98,10 @@
     <select id="findByEmail" resultMap="UserEntityMap">
         SELECT * FROM users WHERE email = #{email}
     </select>
+
+    <update id="updatePasswordByEmail">
+        UPDATE users SET password = #{password},
+        modified_time = #{modifiedTime}
+        WHERE email = #{email}
+    </update>
 </mapper>

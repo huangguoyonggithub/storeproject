@@ -148,13 +148,26 @@ public class UserServiceImpl implements IUserService {
         User user = new User();
         // 将以上查询结果中的username/phone/email/gender封装到新User对象中
         user.setUsername(result.getUsername());
-        user.setPhone(result.getPhone());
-        user.setEmail(result.getEmail());
-        user.setGender(result.getGender());
-
+        user.setUsername(result.getSalt());
         // 返回新的User对象
         return user;
     }
+
+    @Override
+    public void changePasswordByEmail(String email, String newPassword) {
+        User result = userMapper.findByEmail(email);
+        if (result == null){
+            throw new UserNotFoundException("该Email未被注册！");
+        }
+
+        //将新的密码进行加密并加入到数据库中
+        String newMd5Password = getMd5Password(newPassword, result.getSalt());
+        Integer  rows = userMapper.updatePasswordByEmail(email,newMd5Password,new Date());
+        if (rows != 1){
+            throw  new UpdateException("更新时产生未知异常！");
+        }
+    }
+
 
     /**
      * 执行密码加密,定义一个MD5算法的加密处理

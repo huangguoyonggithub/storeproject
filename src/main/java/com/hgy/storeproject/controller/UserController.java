@@ -4,6 +4,7 @@ import com.hgy.storeproject.entity.User;
 import com.hgy.storeproject.service.IUserService;
 import com.hgy.storeproject.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -43,7 +44,7 @@ public class UserController extends BaseController{
         User data = userService.login(username,password);
 
         if (data == null){
-            System.out.println("傻鸟！");
+            System.out.println("登录是产生未知错误！");
         }
 
         //向session对象中完成数据的绑定（session是全局的）
@@ -86,4 +87,18 @@ public class UserController extends BaseController{
         return new JsonResult<String>(OK, data);
     }
 
+    @RequestMapping("get_by_email")
+    public JsonResult<User> getByEmail(String email) {
+        // 调用业务对象执行获取数据
+        User data = userService.getByEmail(email);
+//        System.out.println(data);
+        // 响应成功和数据
+        return new JsonResult<User>(OK, data);
+    }
+
+    @RequestMapping("change_password_by_email")
+    public JsonResult<Void> changePasswordByEmail(String email,String newPassword){
+        userService.changePasswordByEmail(email,newPassword);
+        return new JsonResult<Void>(OK);
+    }
 }

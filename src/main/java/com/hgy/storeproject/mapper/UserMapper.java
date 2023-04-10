@@ -52,4 +52,13 @@ public interface UserMapper {
      * @return 如果找到返回对象，反之返回null
      */
     List<User> selectAllUsers();
+
+    /**
+     *根据用户的email来修改用户的密码
+     * @param email 用户email
+     * @param password 用户输入的新密码
+     * @param modifiedTime 修改的时间
+     * @return 返回值受影向的行数
+     */
+    Integer updatePasswordByEmail(String email, String password, Date modifiedTime);
 }

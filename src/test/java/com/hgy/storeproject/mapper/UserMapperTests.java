@@ -67,4 +67,9 @@ public class UserMapperTests {
         User result = userMapper.findByEmail(email);
         System.out.println(result);
     }
+
+    @Test
+    public void updatePasswordByEmail(){
+        userMapper.updatePasswordByEmail("25555555555qq.xom","123",new Date());
+    }
 }

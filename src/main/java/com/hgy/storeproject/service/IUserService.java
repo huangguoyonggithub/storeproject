@@ -39,4 +39,11 @@ public interface IUserService {
      * @return 当用户的信息
      */
     User getByEmail(String email);
+
+    /**
+     * 修改密码
+     * @param email 用户email
+     * @param newPassword 新密码
+     */
+    void changePasswordByEmail(String email,String newPassword);
 }

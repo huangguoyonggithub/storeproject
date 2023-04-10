@@ -31,12 +31,15 @@ public class LoginInterceptorConfig implements WebMvcConfigurer {
         patterns.add("/web/index.html");
         patterns.add("/web/all-product.html");
         patterns.add("/web/forgot-pws.html");
+        patterns.add("/web/change-pws.html");
         patterns.add("/web/header.html");
         patterns.add("/web/sidebar.html");
         patterns.add("/web/product-single.html");
         patterns.add("/users/reg");
         patterns.add("/users/login");
         patterns.add("/users/get_username");
+        patterns.add("/users/get_by_email");
+        patterns.add("/users/change_password_by_email");
         patterns.add("/pages/**");
         patterns.add("/goods/**");
 
