@@ -94,11 +94,17 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public void changePassword(Integer uid, String username, String oldPassword, String newPassword) {
+    public void changePassword(Integer uid, String username, String oldPassword, String newPassword, String renewPassword) {
         User result = userMapper.findByUid(uid);
         if (result == null){
             throw new UserNotFoundException("用户数据不存在！");
         }
+
+        //输入两次新密码是否相同
+        if( ! newPassword.equals(renewPassword)) {
+            throw new PasswordNotMatchException("输入的两次密码不相同！");
+        }
+
         //原始密码和数据库中密码进行比较
         String oldMd5Password = getMd5Password(oldPassword, result.getSalt());
         if( ! result.getPassword( ).equals(oldMd5Password)) {

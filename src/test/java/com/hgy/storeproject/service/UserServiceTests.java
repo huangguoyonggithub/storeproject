@@ -50,7 +50,7 @@ public class UserServiceTests {
 
     @Test
     public void changePassword(){
-        userService.changePassword(6,"管理员","123","321");
+        userService.changePassword(6,"管理员","123","321","321");
     }
 
     @Test

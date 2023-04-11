@@ -24,7 +24,7 @@ public interface IUserService {
      * @param oldPassword 原密码
      * @param newPassword 新密码
      */
-    void changePassword(Integer uid,String username, String oldPassword,String newPassword);
+    void changePassword(Integer uid,String username, String oldPassword,String newPassword,String renewPassword);
 
     /**
      * 获取当前登录的用户的信息
