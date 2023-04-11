@@ -57,10 +57,7 @@
                             </div>
                             <div class="breadcrumb-list">
                                 <ul>
-                                    <li class="breadcrumb-link">
-                                        <a href="javascript:void(0);"><i class="fas fa-home mr-2"></i>Dashboard</a>
-                                    </li>
-                                    <li class="breadcrumb-link active">Shops</li>
+                                    <li class="breadcrumb-link active">收藏</li>
                                 </ul>
                             </div>
                         </div>
@@ -303,7 +300,7 @@
 									</div>
 								</div>
 								<div class="ad-load-btn">
-									<button class="btn btn-primary squer-btn mt-2 mr-2" data-original-title="" title=""><i class="fa fa-spin fa-spinner mr-2"></i>Load More</button>
+									<a href="index.html" class="btn btn-primary squer-btn mt-2 mr-2">返回首页</a>
 								</div>
 							</div>
 						</div>
@@ -347,10 +344,10 @@
 								+ '<h6><a href="javascript:;" title="">#{title}</a></h6>'
 								+ '</div>'
 								+ '<div class="price">'
-								+ '<div class="text-success">Wallet Balance:- $#{price}</div>'
+								+ '<div class="text-success">价格:$#{price}</div>'
 								+ '</div>'
 								+ '<div class="avaiabilty">'
-								+ '<a href="javascript:;">Work Shop Now <i class="fas fa-angle-right"></i></a>'
+								+ '<a href="" class="btn btn-primary squer-btn mt-2 mr-2" onclick="delCollectItem(#{tid})">取消收藏</a>'
 								+ '</div>'
 								+ '</div>'
 								+ '</div>'
@@ -359,21 +356,35 @@
 
 
 
-						html = html.replace(/#{gid}/g, list[i].gid);
-						html = html.replace(/#{categoryId}/g, list[i].categoryId);
+						html = html.replace(/#{tid}/g, list[i].tid);
 						html = html.replace(/#{image}/g, list[i].image);
-						html = html.replace(/#{goodType}/g, list[i].goodType);
 						html = html.replace(/#{title}/g, list[i].title);
-						html = html.replace(/#{num}/g, list[i].num);
 						html = html.replace(/#{price}/g, list[i].price);
-						html = html.replace(/#{prices}/g, list[i].prices);
 
-
-						$("#good-list").append(html);
+						$("#collect-all").append(html);
 					}
 				},
 				error : function (xhr) {
 					alert("加载产生未知异常，" + xhr.status);
+				}
+			});
+		}
+
+		function delCollectItem(tid) {
+			$.ajax({
+				url: "/collects/" + tid + "/delete_collect",
+				type: "POST",
+				dataType: "JSON",
+				success: function(json) {
+					if (json.state == 200) {
+						$(this).parents(".col-xl-3 col-lg-6 col-md-6").remove();
+					} else {
+						alert("删除收藏失败！" + json.message);
+					}
+				},
+				error: function(xhr) {
+					alert("您的登录信息已经过期，请重新登录！HTTP响应码：" + xhr.status);
+					location.href = "login.html";
 				}
 			});
 		}

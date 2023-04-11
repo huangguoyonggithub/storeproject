@@ -21,8 +21,8 @@ public class CollectController extends BaseController{
     @Autowired
     private ICollectService collectService;
 
-    @RequestMapping("add_to_collect")
-    public JsonResult<Void> addToCollect(Integer gid,HttpSession session) {
+    @RequestMapping("{gid}/add_to_collect")
+    public JsonResult<Void> addToCollect(@PathVariable("gid")Integer gid,HttpSession session) {
         // 从Session中获取uid和username
         Integer uid = getUidFromSession(session);
         String username = getUsernameFromSession(session);
