@@ -2350,17 +2350,6 @@ output {
   line-height: 1.42857143;
   color: #555;
 }
-.form-gender{
-  padding-top: 7px;
-  margin-top: 0;
-  margin-bottom: 0;
-
-  display: inline-block;
-  padding-left: 20px;
-  font-weight: normal;
-  vertical-align: middle;
-  cursor: pointer;
-}
 .form-control {
   display: block;
   width: 100%;
