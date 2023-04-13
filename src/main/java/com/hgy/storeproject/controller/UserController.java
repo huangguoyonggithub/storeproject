@@ -92,4 +92,31 @@ public class UserController extends BaseController{
         userService.changePasswordByEmail(email,newPassword);
         return new JsonResult<Void>(OK);
     }
+
+    @RequestMapping("change_information_by_uid")
+    public JsonResult<Void> changeInformationByUid(String username,String email,Integer gender,String phone,HttpSession session){
+        // 从HttpSession对象中获取uid
+        Integer uid = getUidFromSession(session);
+
+        userService.changeInformationByUid(uid,username,email,gender,phone);
+        return new JsonResult<Void>(OK);
+    }
+
+    @RequestMapping("change_introduction_by_uid")
+    public JsonResult<Void> changeIntroductionByUid(String introduction,HttpSession session){
+        // 从HttpSession对象中获取uid
+        Integer uid = getUidFromSession(session);
+
+        userService.changeIntroductionByUid(uid,introduction);
+        return new JsonResult<Void>(OK);
+    }
+
+    @RequestMapping("change_wallet_by_uid")
+    public JsonResult<Void> changeIntroductionByUid(Double wallet,HttpSession session){
+        // 从HttpSession对象中获取uid
+        Integer uid = getUidFromSession(session);
+
+        userService.changeWalletByUid(uid,wallet);
+        return new JsonResult<Void>(OK);
+    }
 }

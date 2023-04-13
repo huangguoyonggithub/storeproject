@@ -179,7 +179,7 @@ public class UserServiceImpl implements IUserService {
             throw new UserNotFoundException("用户数据不存在！");
         }
 
-        Integer  rows = userMapper.updateInformationByUid(uid,username,email,gender,phone,username,new Date());
+        Integer  rows = userMapper.updateInformationByUid(uid,username,email,gender,phone,result.getUsername(),new Date());
         if (rows != 1){
             throw  new UpdateException("更新时产生未知异常！");
         }

@@ -84,7 +84,7 @@ public class UserServiceTests {
 
     @Test
     public void changeInformation(){
-        userService.changeInformationByUid(8,"管理员","6666666@qq.com",1,"1008611");
+        userService.changeInformationByUid(8,"管理员","5555555@qq.com",1,"1008611");
     }
 
     @Test
