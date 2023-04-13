@@ -124,10 +124,8 @@ public class UserServiceImpl implements IUserService {
         User result = userMapper.findByUid(uid);
 
         if (result == null){
-            throw new UserNotFoundException("用户数据不存在！");
+            throw new UserNotFoundException("未登录！");
         }
-
-
 
         // 创建新的User对象
         User user = new User();

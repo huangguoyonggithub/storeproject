@@ -56,7 +56,7 @@ public class UserServiceTests {
     @Test
     public void getByUid() {
         try {
-            Integer uid = 6;
+            Integer uid = 8;
             User user = userService.getByUid(uid);
             System.out.println(user);
         } catch (ServiceException e) {

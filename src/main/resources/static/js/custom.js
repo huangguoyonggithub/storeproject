@@ -34,7 +34,7 @@ Assigned to: Theme Forest
             this.tooltipHover();
             this.counter();
             this.nubberSpin();
-            this.singleSlide();
+            // this.singleSlide();
             this.productRemove();
             this.Quantity();
             this.PriceRange();
@@ -340,25 +340,25 @@ Assigned to: Theme Forest
         /*-----------------------------------------------------
             Fix Single Slide
         -----------------------------------------------------*/
-        singleSlide: function() {
-            if ($('.swiper-container.s1').length > 0) {
-                var slingleSlideSwiper = new Swiper('.swiper-container.s1', {
-                    autoHeight: false,
-                    autoplay: false,
-                    loop: true,
-                    spaceBetween: 0,
-                    centeredSlides: false,
-                    speed: 1500,
-                    autoplay: {
-                        delay: 1000,
-                    },
-                    navigation: {
-                        nextEl: '.swiperButtonNext',
-                        prevEl: '.swiperButtonPrev',
-                    },
-                });
-            }
-        },
+        // singleSlide: function() {
+        //     if ($('.swiper-container.s1').length > 0) {
+        //         var slingleSlideSwiper = new Swiper('.swiper-container.s1', {
+        //             autoHeight: false,
+        //             autoplay: false,
+        //             loop: true,
+        //             spaceBetween: 0,
+        //             centeredSlides: false,
+        //             speed: 1500,
+        //             autoplay: {
+        //                 delay: 1000,
+        //             },
+        //             navigation: {
+        //                 nextEl: '.swiperButtonNext',
+        //                 prevEl: '.swiperButtonPrev',
+        //             },
+        //         });
+        //     }
+        // },
 
     };
 

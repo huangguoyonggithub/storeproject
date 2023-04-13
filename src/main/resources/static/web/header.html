@@ -10,7 +10,7 @@
     <div class="header-right">
         <div class="header-left">
             <div class="header-links">
-                <a href="javascript:void(0);" class="toggle-btn">
+                <a href="javascript:void(0);" class="toggle-btn" id="btn-mini">
                     <span></span>
                 </a>
             </div>
@@ -40,7 +40,6 @@
                             </g>
                         </svg>
                     </span>
-                    <span class="item-count" id="count">0</span>
                 </a>
             </div>
 
@@ -78,4 +77,29 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ajax({
+            url: "/users/get_by_uid",
+            type: "POST",
+            dataType: "json",
+            success: function(json) {
+                if (json.state == 200) {
+                    $("#username").html(json.data.username);
+                } else {
+                    alert("获取用户信息失败！" + json.message);
+                }
+            }
+        });
+    })
+
+    //toggleClass:对设置和移除所有 <body> 元素的 "mini-sidebar" 类进行切换(也就是换一个样式)
+    $("#btn-mini").click(function () {
+        $("body").toggleClass('mini-sidebar');
+        $(this).toggleClass('checked');
+    });
+</script>
+
+
 
