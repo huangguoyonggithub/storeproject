@@ -82,4 +82,18 @@ public class UserServiceTests {
         userService.changePasswordByEmail("25555555555qq.xom","321");
     }
 
+    @Test
+    public void changeInformation(){
+        userService.changeInformationByUid(8,"管理员","6666666@qq.com",1,"1008611");
+    }
+
+    @Test
+    public void changeIntroduction(){
+        userService.changeIntroductionByUid(8,"牛啊！！！");
+    }
+
+    @Test
+    public void changeWallet(){
+        userService.changeWalletByUid(8,10086.9);
+    }
 }

@@ -104,4 +104,28 @@
         modified_time = #{modifiedTime}
         WHERE email = #{email}
     </update>
+
+    <update id="updateInformationByUid">
+        UPDATE users SET username = #{username},
+        email = #{email},
+        gender = #{gender},
+        phone = #{phone},
+        modified_user = #{modifiedUser},
+        modified_time = #{modifiedTime}
+        WHERE uid = #{uid}
+    </update>
+
+    <update id="updateIntroductionByUid">
+        UPDATE users SET introduction = #{introduction},
+        modified_user = #{modifiedUser},
+        modified_time = #{modifiedTime}
+        WHERE uid = #{uid}
+    </update>
+
+    <update id="updateWalletByUid">
+        UPDATE users SET wallet = #{wallet},
+        modified_user = #{modifiedUser},
+        modified_time = #{modifiedTime}
+        WHERE uid = #{uid}
+    </update>
 </mapper>

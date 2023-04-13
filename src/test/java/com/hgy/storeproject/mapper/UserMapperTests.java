@@ -72,4 +72,23 @@ public class UserMapperTests {
     public void updatePasswordByEmail(){
         userMapper.updatePasswordByEmail("25555555555qq.xom","123",new Date());
     }
+
+    @Test
+    public void updateIntroductionByUid(){
+
+        userMapper.updateIntroductionByUid(8,"好小子！! !","管理者",new Date());
+    }
+
+    @Test
+    public void updateInformationByUid(){
+
+        userMapper.updateInformationByUid(8,"管理者","7758658@163.com",0,"10086110",
+                "管理者",new Date());
+    }
+
+    @Test
+    public void updateWalletByUid(){
+
+        userMapper.updateWalletByUid(8,999.0,"管理者",new Date());
+    }
 }

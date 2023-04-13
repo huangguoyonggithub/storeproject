@@ -172,6 +172,45 @@ public class UserServiceImpl implements IUserService {
         }
     }
 
+    @Override
+    public void changeInformationByUid(Integer uid, String username, String email, Integer gender, String phone) {
+        User result = userMapper.findByUid(uid);
+        if (result == null){
+            throw new UserNotFoundException("用户数据不存在！");
+        }
+
+        Integer  rows = userMapper.updateInformationByUid(uid,username,email,gender,phone,username,new Date());
+        if (rows != 1){
+            throw  new UpdateException("更新时产生未知异常！");
+        }
+    }
+
+    @Override
+    public void changeIntroductionByUid(Integer uid, String introduction) {
+        User result = userMapper.findByUid(uid);
+        if (result == null){
+            throw new UserNotFoundException("用户数据不存在！");
+        }
+
+        Integer  rows = userMapper.updateIntroductionByUid(uid,introduction,result.getUsername(),new Date());
+        if (rows != 1){
+            throw  new UpdateException("更新时产生未知异常！");
+        }
+    }
+
+    @Override
+    public void changeWalletByUid(Integer uid, Double wallet) {
+        User result = userMapper.findByUid(uid);
+        if (result == null){
+            throw new UserNotFoundException("用户数据不存在！");
+        }
+
+        Integer  rows = userMapper.updateWalletByUid(uid,wallet,result.getUsername(),new Date());
+        if (rows != 1){
+            throw  new UpdateException("更新时产生未知异常！");
+        }
+    }
+
 
     /**
      * 执行密码加密,定义一个MD5算法的加密处理
@@ -191,6 +230,5 @@ public class UserServiceImpl implements IUserService {
         }
         return password;
     }
-
 
 }

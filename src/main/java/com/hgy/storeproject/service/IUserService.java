@@ -46,4 +46,28 @@ public interface IUserService {
      * @param newPassword 新密码
      */
     void changePasswordByEmail(String email,String newPassword);
+
+    /**
+     * 更新用户信息
+     * @param uid 用户uid
+     * @param username 用户名字
+     * @param email 用户邮箱
+     * @param gender 用户性别
+     * @param phone 用户电话
+     */
+    void changeInformationByUid(Integer uid,String username,String email,Integer gender,String phone);
+
+    /**
+     * 更新用户介绍
+     * @param uid 用户uid
+     * @param introduction 用户介绍
+     */
+    void changeIntroductionByUid(Integer uid,String introduction);
+
+    /**
+     * 更新用户介绍
+     * @param uid 用户uid
+     * @param wallet 用户介绍
+     */
+    void changeWalletByUid(Integer uid,Double wallet);
 }
