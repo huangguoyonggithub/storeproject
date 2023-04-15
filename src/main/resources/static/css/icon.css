@@ -1,0 +1,163 @@
+.header-icon {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.icon-name{
+    position: absolute;
+    top: 60%;
+}
+.icon-name:before{
+    color: #00acee;
+}
+
+.icon-knife {
+    width: 34px;
+    height: 34px;
+    display: inline-block;
+
+    background-image: url(../image/icon_csgo.less.png);
+    background-repeat: no-repeat;
+    background-position: -34px 0;
+
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.icon-pistol {
+    width: 34px;
+    height: 34px;
+    display: inline-block;
+
+    background-image: url(../image/icon_csgo.less.png);
+    background-repeat: no-repeat;
+    background-position: 0 -68px;
+
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.icon-rifle{
+    width: 34px;
+    height: 34px;
+    display: inline-block;
+
+    background-image: url(../image/icon_csgo.less.png);
+    background-repeat: no-repeat;
+    background-position: -68px 0;
+
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.icon-smg{
+    width: 34px;
+    height: 34px;
+    display: inline-block;
+
+    background-image: url(../image/icon_csgo.less.png);
+    background-repeat: no-repeat;
+    background-position: -34px -68px;
+
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.icon-shotgun{
+    width: 34px;
+    height: 34px;
+    display: inline-block;
+
+    background-image: url(../image/icon_csgo.less.png);
+    background-repeat: no-repeat;
+    background-position: -68px -34px;
+
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.icon-machinegun{
+    width: 34px;
+    height: 34px;
+    display: inline-block;
+
+    background-image: url(../image/icon_csgo.less.png);
+    background-repeat: no-repeat;
+    background-position: 0 -34px;
+
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.icon-hands{
+    width: 34px;
+    height: 34px;
+    display: inline-block;
+
+    background-image: url(../image/icon_csgo.less.png);
+    background-repeat: no-repeat;
+    background-position: -102px 0;
+
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.icon-sticker{
+    width: 34px;
+    height: 34px;
+    display: inline-block;
+
+    background-image: url(../image/icon_csgo.less.png);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.icon-customplayer{
+    width: 34px;
+    height: 34px;
+    display: inline-block;
+
+    background-image: url(../image/icon_csgo.less.png);
+    background-repeat: no-repeat;
+    background-position: 0 -102px;
+
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.icon-other {
+    width: 34px;
+    height: 34px;
+    display: inline-block;
+
+    background-image: url(../image/icon_csgo.less.png);
+    background-repeat: no-repeat;
+    background-position: -34px -34px;
+
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}

@@ -15,6 +15,68 @@
                 </a>
             </div>
         </div>
+        <div class="header-icon">
+            <div class="header-links">
+                <div class="icon-knife">
+
+                </div>
+                <span class="icon-name">匕首</span>
+            </div>
+            <div class="header-links">
+                <div class="icon-pistol">
+
+                </div>
+                <span class="icon-name">手枪</span>
+            </div>
+            <div class="header-links">
+                <div class="icon-rifle">
+
+                </div>
+                <span class="icon-name">步枪</span>
+            </div>
+            <div class="header-links">
+                <div class="icon-smg">
+
+                </div>
+                <span class="icon-name">冲锋枪</span>
+            </div>
+            <div class="header-links">
+                <div class="icon-shotgun">
+
+                </div>
+                <span class="icon-name">霰弹枪</span>
+            </div>
+            <div class="header-links">
+                <div class="icon-machinegun">
+
+                </div>
+                <span class="icon-name">机枪</span>
+            </div>
+            <div class="header-links">
+                <div class="icon-hands">
+
+                </div>
+                <span class="icon-name">手套</span>
+            </div>
+            <div class="header-links">
+                <div class="icon-sticker">
+
+                </div>
+                <span class="icon-name">印花</span>
+            </div>
+            <div class="header-links">
+                <div class="icon-customplayer">
+
+                </div>
+                <span class="icon-name">探员</span>
+            </div>
+            <div class="header-links">
+                <div class="icon-other">
+
+                </div>
+                <span class="icon-name">其他</span>
+            </div>
+        </div>
         <div class="header-controls">
             <div class="cart-wrapper header-links">
                 <a href="cart.html" class="cart-info">
@@ -42,7 +104,6 @@
                     </span>
                 </a>
             </div>
-
             <div class="user-info-wrapper header-links">
                 <a href="javascript:void(0);" class="user-info">
                     <img src="../picture/user.jpg" alt="" class="user-img">
@@ -80,6 +141,10 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        // $(".icon-other").mouseenter(function(){
+        //     $(".icon-other").next(".icon-name").css("color","#00ccff");
+        // });
+
         $.ajax({
             url: "/users/get_by_uid",
             type: "POST",
@@ -92,6 +157,11 @@
                 }
             }
         });
+
+        // $(".icon-other").click(function () {
+        //
+        //     showGoodsList($("#n-page").text());
+        // });
     })
 
     //toggleClass:对设置和移除所有 <body> 元素的 "mini-sidebar" 类进行切换(也就是换一个样式)
@@ -99,6 +169,113 @@
         $("body").toggleClass('mini-sidebar');
         $(this).toggleClass('checked');
     });
+
+    // function showGoodsList(pageNum) {
+    //     $("#good-list").empty();
+    //     // for(var i=1;i<=5;i++){
+    //     // 	$("#page"+i).className("page-item");//恢复当前页高亮
+    //     // }
+    //
+    //     $.ajax({
+    //         url: "/goods/"+pageNum+"/get_page",
+    //         // url: "/goods/good_list",
+    //         type: "POST",
+    //         dataType: "JSON",
+    //         success: function(json) {
+    //             let list = json.data.list;
+    //             for (let i = 0; i < list.length; i++) {
+    //
+    //                 let html = '<li>'
+    //                     + '<div class="product-grid">'
+    //                     + '<div class="product-item">'
+    //                     + '<a href="product-single.html?gid=#{gid}&category_id=#{categoryId}">'
+    //                     + '<img src="#{image}" alt="product-img">'
+    //                     + '</a>'
+    //                     + '<div class="product-overlay"><h4>#{goodType}</h4></div>'
+    //                     + '</div>'
+    //                     + '<div class="product-text-rs">'
+    //                     + '<h4 class="show-title" style="height: 24px;overflow: auto;">#{title}</h4>'
+    //                     + '<h4 style="color: #00acee">库存：#{num}</h4>'
+    //                     + '<h4 style="color: #00acee"><span>¥#{price} </span>¥#{prices}</h4>'
+    //                     + '</div>'
+    //                     + '</div>'
+    //                     + '</li>';
+    //
+    //                 html = html.replace(/#{gid}/g, list[i].gid);
+    //                 html = html.replace(/#{categoryId}/g, list[i].categoryId);
+    //                 html = html.replace(/#{image}/g, list[i].image);
+    //                 html = html.replace(/#{goodType}/g, list[i].goodType);
+    //                 html = html.replace(/#{title}/g, list[i].title);
+    //                 html = html.replace(/#{num}/g, list[i].num);
+    //                 html = html.replace(/#{price}/g, list[i].price);
+    //                 html = html.replace(/#{prices}/g, list[i].prices);
+    //
+    //
+    //                 $("#good-list").append(html);
+    //             }
+    //
+    //             //把数据放到html隐藏标签内，方便分页栏下次调用
+    //             $("#all-pages").text(json.data.pages);   //总页数
+    //             $("#now-page").text(json.data.pageNum);     //当前页数
+    //             if (json.data.prePage<1){   //上一页
+    //                 $("#u-page").text(1);
+    //             }else {
+    //                 $("#u-page").text(json.data.prePage);
+    //             }
+    //             if(json.data.nextPage==0){ //下一页
+    //                 $("#n-page").text(json.data.pages);
+    //             }else{
+    //                 $("#n-page").text(json.data.nextPage);
+    //             }
+    //
+    //             if(json.data.pages>5){   //如果全部总页数大于5
+    //                 if(json.data.pageNum<4){      //当前页数小于等于3
+    //                     $("#page1 a").text(1);
+    //                     $("#page2 a").text(2);
+    //                     $("#page3 a").text(3);
+    //                     $("#page4 a").text(4);
+    //                     $("#page5 a").text(5);
+    //                 }else{
+    //                     if(json.data.pageNum>(json.data.pages-2)){  //如果页数大于等于总页数-2时
+    //                         $("#page1 a").text(json.data.pages-4);
+    //                         $("#page2 a").text(json.data.pages-3);
+    //                         $("#page3 a").text(json.data.pages-2);
+    //                         $("#page4 a").text(json.data.pages-1);
+    //                         $("#page5 a").text(json.data.pages);
+    //                     }else{
+    //                         $("#page1 a").text(json.data.pageNum-2);
+    //                         $("#page2 a").text(json.data.pageNum-1);
+    //                         $("#page3 a").text(json.data.pageNum);
+    //                         $("#page4 a").text(json.data.pageNum+1);
+    //                         $("#page5 a").text(json.data.pageNum+2);
+    //                     }
+    //                 }
+    //             }
+    //             if(json.data.pages<5){   //如果全部总页数小于5
+    //                 for(var i=0;i<json.data.pages;i++){
+    //                     $("#page"+i+" a").text(i+1);
+    //                 }
+    //                 for(var y=json.data.pages;y<5;y++){
+    //                     $("#page"+y).css('display','none');
+    //                 }
+    //             }
+    //
+    //             // 显示出当前页面对应的按钮
+    //             for(var z=1;z<=5;z++)
+    //             {
+    //                 var page=$("#page"+z+" a").text();
+    //                 if(page==json.data.pageNum){
+    //                     $("#page"+z+" a").css({"background-color":"red","color":"white"});     //让当前页的按钮显示红色
+    //                 }else{
+    //                     $("#page"+z+" a").css({"background-color":"white","color":"black"});       //恢复样式
+    //                 }
+    //             }
+    //         },
+    //         error : function (xhr) {
+    //             alert("加载产生未知异常，" + xhr.status);
+    //         }
+    //     });
+    // }
 </script>
 
 
