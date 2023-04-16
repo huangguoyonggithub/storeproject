@@ -12,7 +12,7 @@
     color: #00acee;
 }
 
-.icon-knife {
+#icon-knife {
     width: 34px;
     height: 34px;
     display: inline-block;
@@ -27,7 +27,7 @@
     transform: translate(-50%,-50%);
 }
 
-.icon-pistol {
+#icon-pistol {
     width: 34px;
     height: 34px;
     display: inline-block;
@@ -42,7 +42,7 @@
     transform: translate(-50%,-50%);
 }
 
-.icon-rifle{
+#icon-rifle{
     width: 34px;
     height: 34px;
     display: inline-block;
@@ -57,7 +57,7 @@
     transform: translate(-50%,-50%);
 }
 
-.icon-smg{
+#icon-smg{
     width: 34px;
     height: 34px;
     display: inline-block;
@@ -72,7 +72,7 @@
     transform: translate(-50%,-50%);
 }
 
-.icon-shotgun{
+#icon-shotgun{
     width: 34px;
     height: 34px;
     display: inline-block;
@@ -87,7 +87,7 @@
     transform: translate(-50%,-50%);
 }
 
-.icon-machinegun{
+#icon-machinegun{
     width: 34px;
     height: 34px;
     display: inline-block;
@@ -102,7 +102,7 @@
     transform: translate(-50%,-50%);
 }
 
-.icon-hands{
+#icon-hands{
     width: 34px;
     height: 34px;
     display: inline-block;
@@ -117,7 +117,7 @@
     transform: translate(-50%,-50%);
 }
 
-.icon-sticker{
+#icon-sticker{
     width: 34px;
     height: 34px;
     display: inline-block;
@@ -132,7 +132,7 @@
     transform: translate(-50%,-50%);
 }
 
-.icon-customplayer{
+#icon-customplayer{
     width: 34px;
     height: 34px;
     display: inline-block;
@@ -147,7 +147,7 @@
     transform: translate(-50%,-50%);
 }
 
-.icon-other {
+#icon-other {
     width: 34px;
     height: 34px;
     display: inline-block;
