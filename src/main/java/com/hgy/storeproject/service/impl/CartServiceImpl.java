@@ -85,7 +85,6 @@ public class CartServiceImpl implements ICartService {
         return cartMapper.findCountByUid(uid);
     }
 
-
     @Override
     public void deleteCartVOByCid(Integer cid) {
         // 根据参数cid查询购物车中的数据
@@ -100,6 +99,17 @@ public class CartServiceImpl implements ICartService {
             if (rows != 1) {
                 throw new DeleteException("删除该购物车数据时产生未知错误！");
             }
+        }
+    }
+
+    @Override
+    public void deleteCartByCids(String ids) {
+        String[] cids = ids.split(",");
+
+        Integer rows = cartMapper.deleteCartByCids(cids);
+        System.out.println(rows);
+        if (rows < 1) {
+            throw new DeleteException("批量删除该购物车数据时产生未知错误！");
         }
     }
 }

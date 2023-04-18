@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -65,5 +66,11 @@ public class CartMapperTests {
     public void findVOByCid() {
         CartVO cart = cartMapper.findVOByCid(2);
         System.out.println(cart);
+    }
+
+    @Test
+    public void deleteByCids() {
+        String[] ids= {"19", "20"};
+        cartMapper.deleteCartByCids(ids);
     }
 }

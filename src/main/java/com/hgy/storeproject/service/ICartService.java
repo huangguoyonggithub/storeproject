@@ -32,4 +32,10 @@ public interface ICartService {
      * @param cid 购物车id
      */
     void deleteCartVOByCid(Integer cid);
+
+    /**
+     * 批量删除cart
+     * @param ids cid字符串
+     */
+    void deleteCartByCids(String ids);
 }

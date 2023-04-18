@@ -46,4 +46,12 @@ public class CartController extends BaseController{
         // 返回成功
         return new JsonResult<Void>(OK);
     }
+
+    @RequestMapping("delete_carts")
+    public JsonResult<Void> DeleteCarts(String cid) {
+        // 调用业务对象执行添加到购物车
+        cartService.deleteCartByCids(cid);
+        // 返回成功
+        return new JsonResult<Void>(OK);
+    }
 }

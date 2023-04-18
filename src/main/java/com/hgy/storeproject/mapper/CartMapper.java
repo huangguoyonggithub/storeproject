@@ -3,6 +3,7 @@ package com.hgy.storeproject.mapper;
 import com.hgy.storeproject.entity.Cart;
 import com.hgy.storeproject.vo.CartVO;
 import org.apache.ibatis.annotations.Param;
+import org.omg.PortableInterceptor.INACTIVE;
 
 import java.util.Date;
 import java.util.List;
@@ -64,4 +65,11 @@ public interface CartMapper {
      * @return 受影响的行数
      */
     Integer deleteCartVOByCid(Integer cid);
+
+    /**
+     * 批量删除cart
+     * @param ids cid数组
+     * @return 受影响的行数
+     */
+    Integer deleteCartByCids(String[] ids);
 }

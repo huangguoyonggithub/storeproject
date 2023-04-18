@@ -42,4 +42,16 @@ public class CartServiceTests {
             System.out.println(e.getMessage());
         }
     }
+
+    @Test
+    public void deleteCartByCids() {
+        try {
+            String cid = "24,25,";
+            cartService.deleteCartByCids(cid);
+            System.out.println("OK.");
+        } catch (ServiceException e) {
+            System.out.println(e.getClass().getSimpleName());
+            System.out.println(e.getMessage());
+        }
+    }
 }

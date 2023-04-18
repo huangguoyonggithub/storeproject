@@ -68,4 +68,11 @@
     <select id="findCountByUid" resultType="java.lang.Integer">
         SELECT count(*) from cart where uid=#{uid}
     </select>
+
+    <delete id="deleteCartByCids">
+        DELETE FROM cart WHERE cid in
+        <foreach collection="array" item="cid" separator="," open="(" close=")">
+            #{cid}
+        </foreach>
+    </delete>
 </mapper>
