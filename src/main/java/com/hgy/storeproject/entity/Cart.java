@@ -7,7 +7,6 @@ public class Cart extends BaseEntity{
     private Integer uid;
     private Integer gid;
     private Double price;
-    private Integer num;
 
     public Integer getCid() {
         return cid;
@@ -41,14 +40,6 @@ public class Cart extends BaseEntity{
         this.price = price;
     }
 
-    public Integer getNum() {
-        return num;
-    }
-
-    public void setNum(Integer num) {
-        this.num = num;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -58,13 +49,12 @@ public class Cart extends BaseEntity{
         return Objects.equals(getCid(), cart.getCid()) &&
                 Objects.equals(getUid(), cart.getUid()) &&
                 Objects.equals(getGid(), cart.getGid()) &&
-                Objects.equals(getPrice(), cart.getPrice()) &&
-                Objects.equals(getNum(), cart.getNum());
+                Objects.equals(getPrice(), cart.getPrice());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), getCid(), getUid(), getGid(), getPrice(), getNum());
+        return Objects.hash(super.hashCode(), getCid(), getUid(), getGid(), getPrice());
     }
 
     @Override
@@ -74,7 +64,6 @@ public class Cart extends BaseEntity{
                 ", uid=" + uid +
                 ", gid=" + gid +
                 ", price=" + price +
-                ", num=" + num +
                 '}';
     }
 }

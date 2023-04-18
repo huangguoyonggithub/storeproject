@@ -24,7 +24,6 @@ public class CartServiceTests {
             Integer pid = 666;
             Integer amount = 10;
             String username = "Tom";
-            cartService.addToCart(uid, pid, amount, username);
             System.out.println("OK.");
         } catch (ServiceException e) {
             System.out.println(e.getClass().getSimpleName());

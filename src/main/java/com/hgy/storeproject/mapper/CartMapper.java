@@ -18,14 +18,12 @@ public interface CartMapper {
     /**
      * 修改购物车数据中商品的数量
      * @param cid 购物车数据的id
-     * @param num 新的数量
      * @param modifiedUser 修改执行人
      * @param modifiedTime 修改时间
      * @return 受影响的行数
      */
     Integer updateNumByCid(
             @Param("cid") Integer cid,
-            @Param("num") Integer num,
             @Param("modifiedUser") String modifiedUser,
             @Param("modifiedTime") Date modifiedTime);
 

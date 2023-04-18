@@ -19,12 +19,12 @@ public class CartController extends BaseController{
     private ICartService cartService;
 
     @RequestMapping("add_to_cart")
-    public JsonResult<Void> addToCart(Integer gid, Integer amount, HttpSession session) {
+    public JsonResult<Void> addToCart(Integer gid, HttpSession session) {
         // 从Session中获取uid和username
         Integer uid = getUidFromSession(session);
         String username = getUsernameFromSession(session);
         // 调用业务对象执行添加到购物车
-        cartService.addToCart(uid, gid, amount, username);
+        cartService.addToCart(uid, gid, username);
         // 返回成功
         return new JsonResult<Void>(OK);
     }
@@ -45,27 +45,5 @@ public class CartController extends BaseController{
         cartService.deleteCartVOByCid(cid);
         // 返回成功
         return new JsonResult<Void>(OK);
-    }
-
-    @RequestMapping("{cid}/num/plus")
-    public JsonResult<Integer> addNum(@PathVariable("cid") Integer cid, HttpSession session) {
-        // 从Session中获取uid和username
-        Integer uid = getUidFromSession(session);
-        String username = getUsernameFromSession(session);
-        // 调用业务对象执行增加数量
-        Integer data = cartService.addNum(cid, uid, username);
-        // 返回成功
-        return new JsonResult<Integer>(OK, data);
-    }
-
-    @RequestMapping("{cid}/num/minus")
-    public JsonResult<Integer> minusNum(@PathVariable("cid") Integer cid, HttpSession session) {
-        // 从Session中获取uid和username
-        Integer uid = getUidFromSession(session);
-        String username = getUsernameFromSession(session);
-        // 调用业务对象执行减少数量
-        Integer data = cartService.minusNum(cid, uid, username);
-        // 返回成功
-        return new JsonResult<Integer>(OK, data);
     }
 }

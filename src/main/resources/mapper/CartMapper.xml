@@ -23,14 +23,25 @@
         <result column="modified_user" property="modifiedUser"/>
     </resultMap>
 
+    <resultMap id="CartVOMap" type="com.hgy.storeproject.vo.CartVO">
+        <!--将表的资源和类(实体类)的属性不一致的字段进行匹配指定，名称一致的字段可以省略不写-->
+        <!--配合完成名称不一致的映射:
+            column属性:表示表中的资源名称
+            property属性:表示类中的属性名称
+        -->
+        <!--在定义映射规则时主键是不可以省略的-->
+        <id column="cid" property="cid"/>
+        <result column="good_type" property="goodType"/>
+    </resultMap>
+
     <insert id="insertCart" useGeneratedKeys="true" keyProperty="cid">
-        INSERT INTO cart (uid, gid, price, num, created_user, created_time, modified_user, modified_time)
-        VALUES (#{uid}, #{gid}, #{price}, #{num}, #{createdUser}, #{createdTime}, #{modifiedUser}, #{modifiedTime})
+        INSERT INTO cart (uid, gid, price, created_user, created_time, modified_user, modified_time)
+        VALUES (#{uid}, #{gid}, #{price}, #{createdUser}, #{createdTime}, #{modifiedUser}, #{modifiedTime})
     </insert>
 
     <update id="updateNumByCid">
         UPDATE cart
-        SET num=#{num}, modified_user=#{modifiedUser}, modified_time=#{modifiedTime}
+        SET modified_user=#{modifiedUser}, modified_time=#{modifiedTime}
         WHERE cid=#{cid}
     </update>
 
@@ -39,13 +50,13 @@
     </select>
 
     <!-- 查询某用户的购物车数据：List<CartVO> findVOByUid(Integer uid) -->
-    <select id="findVOByUid" resultType="com.hgy.storeproject.vo.CartVO">
-        SELECT cid, uid, cart.gid, cart.price, cart.num, goods.title, goods.image
+    <select id="findVOByUid" resultMap="CartVOMap">
+        SELECT cid, uid, cart.gid, cart.price, goods.title, goods.image, goods.good_type
         FROM cart LEFT JOIN goods ON cart.gid = goods.gid
         WHERE uid = #{uid} ORDER BY cart.created_time DESC
     </select>
 
-    <select id="findVOByCid" resultType="com.hgy.storeproject.vo.CartVO">
+    <select id="findVOByCid" resultMap="CartVOMap">
         SELECT * FROM cart WHERE cid=#{cid}
     </select>
 

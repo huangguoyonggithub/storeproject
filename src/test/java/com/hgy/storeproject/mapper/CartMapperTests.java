@@ -24,7 +24,6 @@ public class CartMapperTests {
         Cart cart = new Cart();
         cart.setUid(1);
         cart.setGid(2);
-        cart.setNum(3);
         cart.setPrice(12.44);
         Integer rows = cartMapper.insertCart(cart);
         System.out.println("rows=" + rows);
@@ -36,7 +35,7 @@ public class CartMapperTests {
         Integer num = 10;
         String modifiedUser = "购物车管理员";
         Date modifiedTime = new Date();
-        Integer rows = cartMapper.updateNumByCid(cid, num, modifiedUser, modifiedTime);
+        Integer rows = cartMapper.updateNumByCid(cid, modifiedUser, modifiedTime);
         System.out.println("rows=" + rows);
     }
 
@@ -50,7 +49,7 @@ public class CartMapperTests {
 
     @Test
     public void findVOByUid() {
-        List<CartVO> list = cartMapper.findVOByUid(6);
+        List<CartVO> list = cartMapper.findVOByUid(8);
         for (CartVO item : list){
             System.out.println(item);
         }
@@ -58,7 +57,7 @@ public class CartMapperTests {
 
     @Test
     public void findCountByUid() {
-        Integer count = cartMapper.findCountByUid(6);
+        Integer count = cartMapper.findCountByUid(8);
         System.out.println(count);
     }
 

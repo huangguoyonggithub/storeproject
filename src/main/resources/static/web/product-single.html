@@ -89,24 +89,10 @@
 													<li  style="color: #00acee"><span id="good-price1"></span><span>￥</span></li>
 													<li><span id="good-price2"></span><span>￥</span></li>
 													<li id="good-type">on offer</li>
-													<br>
-													现有库存：<li id="good-num">3 Customer Reviews</li>件
 												</ul>
 											</div>
 											<div class="int-quantity-stock">
 												<ul>
-													<li>数量</li>
-													<li>
-														<div class="fd-pro-quantity">
-															<div class="quantity-wrapper">
-																<div class="input-group">
-																	<input type="text" class="quantity" id="num" value="2">
-																	<span class="quantity-minus quantity-minus2" style="color: #00acee">-</span>
-																	<span class="quantity-plus quantity-plus2" style="color: #00acee">+</span>
-																</div>
-															</div>
-														</div>
-													</li>
 													<li>
 														<button type="button" class="ad-btn" id="add-to-cart">加入购物车</button>
 													</li>
@@ -144,7 +130,6 @@
 															<th>名称</th>
 															<th>当前价/￥</th>
 															<th>原价/￥</th>
-															<th>库存</th>
 															<th>类型</th>
 														</tr>
 														</thead>
@@ -220,7 +205,6 @@
 						$("#good-price1").html(json.data.price);
 						$("#good-price2").html(json.data.prices);
 						$("#good-type").html(json.data.goodType);
-						$("#good-num").html(json.data.num);
 
 
 					} else if (json.state == 4003) { // 商品数据不存在的异常
@@ -246,7 +230,6 @@
 									+ '<td style="text-align: center;line-height: 200px;color: #00acee;font-size: 17px;">#{title}</td>'
 									+ '<td style="text-align: center;line-height: 200px;color: #00acee">#{price}￥</td>'
 									+ '<td style="text-align: center;line-height: 200px;color: #00acee">#{prices}￥</td>'
-									+ '<td style="text-align: center;line-height: 200px">#{num}</td>'
 									+ '<td style="text-align: center;line-height: 200px"><label class="mb-0 badge badge-primary" title="" data-original-title="Pending" type="button" class="add-good-to-cart">#{goodType}</label></td>'
 									+ '</tr>';
 
@@ -275,7 +258,6 @@
 				type: "POST",
 				data: {
 					"gid": gid,
-					"amount": $("#num").val()
 				},
 				dataType: "JSON",
 				success: function(json) {
@@ -291,6 +273,30 @@
 				}
 			});
 		});
+
+		// 有数量的加入购物车
+		// $("#add-to-cart").click(function() {
+		// 	$.ajax({
+		// 		url: "/carts/add_to_cart",
+		// 		type: "POST",
+		// 		data: {
+		// 			"gid": gid,
+		// 			"amount": $("#num").val()
+		// 		},
+		// 		dataType: "JSON",
+		// 		success: function(json) {
+		// 			if (json.state == 200) {
+		// 				alert("增加购物车成功！");
+		// 			} else {
+		// 				alert("增加购物车失败！" + json.message);
+		// 			}
+		// 		},
+		// 		error: function(xhr) {
+		// 			alert("您的登录信息已经过期，请重新登录！HTTP响应码：" + xhr.status);
+		// 			location.href = "login.html";
+		// 		}
+		// 	});
+		// });
 
 		$("#add-to-collect").click(function() {
 			$.ajax({

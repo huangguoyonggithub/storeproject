@@ -56,9 +56,6 @@
                             </div>
                             <div class="breadcrumb-list">
                                 <ul>
-                                    <li class="breadcrumb-link">
-                                        <a href="javascript:void(0);"><i class="fas fa-home mr-2"></i>Dashboard</a>
-                                    </li>
                                     <li class="breadcrumb-link active">Cart</li>
                                 </ul>
                             </div>
@@ -82,9 +79,8 @@
                                                     <th style="display: none"></th>
                                                     <th>装备展示</th>
                                                     <th>装备名称</th>
+                                                    <th>类型</th>
                                                     <th>价格</th>
-                                                    <th>数量</th>
-													<th>总价</th>
                                                     <th>操作</th>
                                                 </tr>
                                             </thead>
@@ -97,17 +93,6 @@
                                                     </td>
                                                     <td>Dining Chair</td>
                                                     <td>$86</td>
-                                                    <td>
-														<div class="int-table-quantity">
-															<div class="quantity-wrapper">
-																<div class="input-group">
-																	<span class="quantity-minus"> - </span>
-																	<input type="number" class="quantity" value="2">
-																	<span class="quantity-plus"> + </span>
-																</div>
-															</div>
-														</div>
-													</td>
                                                     <td><a href="javascript:;"><i class="far fa-times-circle"></i></a></td>
                                                     <td>$375</td>
                                                 </tr>
@@ -119,17 +104,6 @@
                                                     </td>
                                                     <td>Ceiling Light</td>
                                                     <td>$79</td>
-                                                    <td>
-														<div class="int-table-quantity">
-															<div class="quantity-wrapper">
-																<div class="input-group">
-																	<span class="quantity-minus"> - </span>
-																	<input type="number" class="quantity" value="1">
-																	<span class="quantity-plus"> + </span>
-																</div>
-															</div>
-														</div>
-													</td>
                                                     <td><a href="javascript:;"><i class="far fa-times-circle"></i></a></td>
                                                     <td>$275</td>
                                                 </tr>
@@ -141,17 +115,6 @@
                                                     </td>
                                                     <td>Wooden Sofa</td>
                                                     <td>$96</td>
-                                                    <td>
-														<div class="int-table-quantity">
-															<div class="quantity-wrapper">
-																<div class="input-group">
-																	<span class="quantity-minus"> - </span>
-																	<input type="number" class="quantity" value="3">
-																	<span class="quantity-plus"> + </span>
-																</div>
-															</div>
-														</div>
-													</td>
                                                     <td><a href="javascript:;"><i class="far fa-times-circle"></i></a></td>
                                                     <td>$475</td>
                                                 </tr>
@@ -163,16 +126,14 @@
                                                     <td>&nbsp;</td>
                                                     <td><b>Total Price :</b></td>
                                                     <td>￥<b id="prices">6935.00</b></td>
-                                                    <td></td>
-                                                    <td></td>
+                                                    <td> </td>
                                                 </tr>
                                                 <tr>
                                                     <td>&nbsp;</td>
-                                                    <td>&nbsp;</td>
-                                                    <td>&nbsp;</td>
+                                                    <td> </td>
+                                                    <td> </td>
                                                     <td><a href="index.html" class="btn btn-danger squer-btn mt-2 mr-2">返回首页</a></td>
                                                     <td><a href="checkout.html" class="btn btn-success squer-btn mt-2 mr-2">结算</a></td>
-                                                    <td></td>
                                                     <td></td>
                                                 </tr>
                                             </tfoot>
@@ -203,14 +164,6 @@
         })
 
 
-        function num(obj) {
-            // obj.value = obj.value.replace(/[^\d.]/g, ""); //清除"数字"和"."以外的字符
-            // obj.value = obj.value.replace(/^\./g, ""); //验证第一个字符是数字
-            // obj.value = obj.value.replace(/\.{2,}/g, "."); //只保留第一个, 清除多余的
-            // obj.value = obj.value.replace(".", "$#$").replace(/\./g, "").replace("$#$", ".");
-            obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/, '$1$2.$3'); //只能输入两个小数
-        }
-
         function showCartList() {
             $("#cart-list").empty();
             $.ajax({
@@ -219,7 +172,7 @@
                 dataType: "JSON",
                 success: function(json) {
                     let list = json.data;
-                    var sum = 0,totalPrice = 0;
+                    let sum = 0;
                     for (let i = 0; i < list.length; i++) {
                         let tr = '<tr class="cart-page-data">'
                             + '<td style="display: none">#{cid}</td>'
@@ -229,31 +182,18 @@
                             + '</div>'
                             + '</td>'
                             + '<td>#{title}</td>'
+                            + '<td>#{good_type}</td>'
                             + '<td>￥<b id="price-#{cid}">#{price}</b></td>'
-                            + '<td>'
-                            + '<div class="int-table-quantity">'
-                            + '<div class="quantity-wrapper">'
-                            + '<div class="input-group">'
-                            + '<span class="quantity-minus" onclick="minusNum(#{cid})"> - </span>'
-                            + '<input type="number" class="quantity" value="#{num}" id="quantity-#{cid}">'
-                            + '<span class="quantity-plus" onclick="plusNum(#{cid})"> + </span>'
-                            + '</div>'
-                            + '</div>'
-                            + '</div>'
-                            + '</td>'
-                            + '<td>￥<b id="total-price-#{cid}" onkeyup="num(this)">#{totalPrice}</b></td>'
                             + '<td><a href="" onclick="delCartItem(#{cid})" class="btn btn-danger squer-btn mt-2 mr-2">删除</a></td>'
                             + '</tr>';
 
-                        totalPrice = list[i].price * list[i].num;
-                        sum = sum + totalPrice;
-
                         tr = tr.replace(/#{cid}/g, list[i].cid);
                         tr = tr.replace(/#{image}/g, list[i].image);
+                        tr = tr.replace(/#{good_type}/g, list[i].goodType);
                         tr = tr.replace(/#{title}/g, list[i].title);
                         tr = tr.replace(/#{price}/g, list[i].price);
-                        tr = tr.replace(/#{num}/g, list[i].num);
-                        tr = tr.replace(/#{totalPrice}/g, totalPrice.toFixed(2));
+
+                        sum = sum + list[i].price;
 
                         $("#cart-list").append(tr);
                     }
@@ -275,44 +215,6 @@
                         $(this).parents(".cart-page-data").remove();
                     } else {
                         alert("删除购物车失败！" + json.message);
-                    }
-                },
-                error: function(xhr) {
-                    alert("您的登录信息已经过期，请重新登录！HTTP响应码：" + xhr.status);
-                    location.href = "login.html";
-                }
-            });
-        }
-
-        function plusNum(cid) {
-            $.ajax({
-                url: "/carts/" + cid + "/num/plus",
-                type: "POST",
-                dataType: "JSON",
-                success: function(json) {
-                    if (json.state == 200) {
-                        showCartList();
-                    } else {
-                        alert("增加商品数量失败！" + json.message);
-                    }
-                },
-                error: function(xhr) {
-                    alert("您的登录信息已经过期，请重新登录！HTTP响应码：" + xhr.status);
-                    location.href = "login.html";
-                }
-            });
-        }
-
-        function minusNum(cid) {
-            $.ajax({
-                url: "/carts/" + cid + "/num/minus",
-                type: "POST",
-                dataType: "JSON",
-                success: function(json) {
-                    if (json.state == 200) {
-                        showCartList();
-                    } else {
-                        alert("减少商品数量失败！" + json.message);
                     }
                 },
                 error: function(xhr) {

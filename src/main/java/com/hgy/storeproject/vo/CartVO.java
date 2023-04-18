@@ -8,9 +8,9 @@ public class CartVO implements Serializable {
     private Integer uid;
     private Integer gid;
     private Double price;
-    private Integer num;
     private String title;
     private String image;
+    private String goodType;
 
     public Integer getCid() {
         return cid;
@@ -44,14 +44,6 @@ public class CartVO implements Serializable {
         this.price = price;
     }
 
-    public Integer getNum() {
-        return num;
-    }
-
-    public void setNum(Integer num) {
-        this.num = num;
-    }
-
     public String getTitle() {
         return title;
     }
@@ -68,6 +60,14 @@ public class CartVO implements Serializable {
         this.image = image;
     }
 
+    public String getGoodType() {
+        return goodType;
+    }
+
+    public void setGoodType(String goodType) {
+        this.goodType = goodType;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -77,14 +77,14 @@ public class CartVO implements Serializable {
                 Objects.equals(getUid(), cartVO.getUid()) &&
                 Objects.equals(getGid(), cartVO.getGid()) &&
                 Objects.equals(getPrice(), cartVO.getPrice()) &&
-                Objects.equals(getNum(), cartVO.getNum()) &&
                 Objects.equals(getTitle(), cartVO.getTitle()) &&
-                Objects.equals(getImage(), cartVO.getImage());
+                Objects.equals(getImage(), cartVO.getImage()) &&
+                Objects.equals(getGoodType(), cartVO.getGoodType());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getCid(), getUid(), getGid(), getPrice(), getNum(), getTitle(), getImage());
+        return Objects.hash(getCid(), getUid(), getGid(), getPrice(), getTitle(), getImage(), getGoodType());
     }
 
     @Override
@@ -94,9 +94,9 @@ public class CartVO implements Serializable {
                 ", uid=" + uid +
                 ", gid=" + gid +
                 ", price=" + price +
-                ", num=" + num +
                 ", title='" + title + '\'' +
                 ", image='" + image + '\'' +
+                ", goodType='" + goodType + '\'' +
                 '}';
     }
 }
