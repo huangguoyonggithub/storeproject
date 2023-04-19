@@ -38,4 +38,12 @@ public interface ICartService {
      * @param ids cid字符串
      */
     void deleteCartByCids(String ids);
+
+    /**
+     * 根据cid数组查询cart数据
+     * @param uid 用户id
+     * @param cids 商品id数组
+     * @return 该用户的购物车数据的多条列表
+     */
+    List<CartVO> getVOByCids(Integer uid,Integer[] cids);
 }

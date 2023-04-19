@@ -26,15 +26,12 @@
     <!--  icon  -->
     <link rel="stylesheet" type="text/css" href="../css/icon.css">
     <style type="text/css">
-        #checkbox-all{
+        #form{
             position: relative;
-            top: 15px;
-            left: 10px;
+            left: 10%;
         }
-        .checkbox{
-            position: relative;
-            top: 40px;
-            left: 38px;
+        #number,#total-price{
+            color: #00acee;
         }
     </style>
 </head>
@@ -64,11 +61,11 @@
                     <div class="colxl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="page-title-wrapper">
                             <div class="page-title-box">
-                                <h4 class="page-title bold">Cart</h4>
+                                <h4 class="page-title bold">orderConfirm</h4>
                             </div>
                             <div class="breadcrumb-list">
                                 <ul>
-                                    <li class="breadcrumb-link active">Cart</li>
+                                    <li class="breadcrumb-link active">orderConfirm</li>
                                 </ul>
                             </div>
                         </div>
@@ -80,24 +77,21 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card table-card">
                             <div class="card-header pb-0">
-                                <h4>Cart</h4>
+                                <h4>orderConfirm</h4>
                             </div>
                             <div class="card-body pb-4">
                                 <div class="chart-holder">
                                     <div class="table-responsive">
-                                        <form action="orderConfirm.html" role="form">
+                                        <form  id="form">
                                         <table class="table table-styled mb-0" id="table">
                                             <thead>
                                                 <tr>
                                                     <th style="display: none"></th>
-                                                    <th>
-                                                        全选<input id="checkbox-all" type="checkbox"><label for="checkbox-all"></label>
-                                                    </th>
+                                                    <th></th>
                                                     <th>装备展示</th>
                                                     <th>装备名称</th>
                                                     <th>类型</th>
                                                     <th>价格</th>
-                                                    <th>操作</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="cart-list">
@@ -137,12 +131,18 @@
                                             </tbody>
                                             <tfoot>
                                                 <tr>
-                                                    <td>&nbsp;</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td>已选商品<span id="number"></span>件￥<span id="total-price"></span></td>
+                                                </tr>
+                                                <tr>
                                                     <td> </td>
                                                     <td> </td>
-                                                    <td><a href="index.html" class="btn btn-danger squer-btn mt-2 mr-2">返回首页</a></td>
-                                                    <td><input type="submit" value="  结  算  " class="btn btn-success squer-btn mt-2 mr-2" /></td>
-                                                    <td><a class="btn btn-danger squer-btn mt-2 mr-2" id="delete-all">删除选中</a></td>
+                                                    <td></td>
+                                                    <td><a href="cart.html" class="btn btn-success squer-btn mt-2 mr-2">返回购物车</a></td>
+                                                    <td><input type="button" value="  支  付  " class="btn btn-success squer-btn mt-2 mr-2" /></td>
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -176,18 +176,19 @@
         function showCartList() {
             $("#cart-list").empty();
             $.ajax({
-                url: "/carts",
+                url: "/carts/list",
                 type: "GET",
+                data : location.search.substr(1), //地址栏上的数据，1代表？后的数据，0代表？前的
                 dataType: "JSON",
                 success: function(json) {
                     if (json.state == 200){
                         let list = json.data;
+                        let num = 0;
+                        let sum = 0;
                         for (let i = 0; i < list.length; i++) {
                             let tr = '<tr class="cart-page-data">'
                                 + '<td style="display: none">#{cid}</td>'
-                                + '<td>'
-                                + '<label><input class="check" type="checkbox" name="cids" value="#{cid}"></label>'
-                                + '</td>'
+                                + '<td></td>'
                                 + '<td>'
                                 + '<div class="img-chair">'
                                 + '<img src="#{image}" alt=" ">'
@@ -196,7 +197,6 @@
                                 + '<td>#{title}</td>'
                                 + '<td>#{good_type}</td>'
                                 + '<td>￥<b id="price-#{cid}">#{price}</b></td>'
-                                + '<td><a href="" onclick="delCartItem(#{cid})" class="btn btn-danger squer-btn mt-2 mr-2">删除</a></td>'
                                 + '</tr>';
 
                             tr = tr.replace(/#{cid}/g, list[i].cid);
@@ -205,8 +205,13 @@
                             tr = tr.replace(/#{title}/g, list[i].title);
                             tr = tr.replace(/#{price}/g, list[i].price);
 
+                            num ++;
+                            sum +=  list[i].price;
+
                             $("#cart-list").append(tr);
                         }
+                        $("#number").html(num);
+                        $("#total-price").html(sum);
                     }
                 },
                 error : function (xhr) {
@@ -215,82 +220,6 @@
             });
         }
 
-        function delCartItem(cid) {
-            $.ajax({
-                url: "/carts/" + cid + "/delete_cart",
-                type: "POST",
-                dataType: "JSON",
-                success: function(json) {
-                    if (json.state == 200) {
-                        alert("删除成功！")
-                        $("#table").load("/carts");
-                    } else {
-                        alert("删除购物车失败！" + json.message);
-                    }
-                },
-                error: function(xhr) {
-                    alert("您的登录信息已经过期，请重新登录！HTTP响应码：" + xhr.status);
-                    location.href = "login.html";
-                }
-            });
-        }
-
-        //全选
-        $("#checkbox-all").click(function (){
-            for (let i = 0;i<$(".check").length; i++){
-                $(".check")[i].checked = this.checked
-            }
-        })
-
-        // $(document).on("click",".checkbox")
-
-        // $("#delete-all").click(function () {
-        //     let flag = $(".checkbox").checked;
-        //     console.log(flag);
-        //     let str = "";
-        //     let id = "";
-        //     if (flag.length===0){
-        //         alert("请选中想要删除的商品")
-        //     }else {
-        //         if (confirm("您确定要删除"+ flag.length +"条数据吗？")){
-        //             $.each(flag, function (index, item) {
-        //                 id = $(item).val();
-        //                 alert(id);
-        //                 if (id != null){
-        //                     str += id + ",";
-        //                 }
-        //             });
-        //         }
-        //     }
-        //
-        //     $.ajax({
-        //         url: "/carts/delete_carts",
-        //         data: {"cid":str},
-        //         type: "POST",
-        //         dataType: "JSON",
-        //         success: function(json) {
-        //             if (json.state == 200) {
-        //                 alert("删除购物车失败！" + json.message);
-        //             } else {
-        //                 alert("删除成功！")
-        //                 $("#table").load("/carts");
-        //             }
-        //         },
-        //         error: function(xhr) {
-        //             alert("您的登录信息已经过期，请重新登录！HTTP响应码：" + xhr.status);
-        //             location.href = "login.html";
-        //         }
-        //     });
-        // });
-
-        /*
-        $(function() {
-            //返回链接
-            $(".link-account").click(function() {
-                location.href = "orderConfirm.html";
-            })
-        })
-        */
     </script>
 </body>
 

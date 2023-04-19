@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -112,4 +113,20 @@ public class CartServiceImpl implements ICartService {
             throw new DeleteException("批量删除该购物车数据时产生未知错误！");
         }
     }
+
+    @Override
+    public List<CartVO> getVOByCids(Integer uid, Integer[] cids) {
+        List<CartVO> list = cartMapper.findVOByCids(cids);
+        Iterator<CartVO> it = list.iterator(); //迭代器用于遍历
+        while (it.hasNext()){
+            CartVO cartVO =it.next();
+            if (!cartVO.getUid().equals(uid)){  //表示当前数据不属于当前用户
+                //从集合中移除这个元素
+                it.remove();
+            }
+        }
+        return list;
+    }
+
+
 }

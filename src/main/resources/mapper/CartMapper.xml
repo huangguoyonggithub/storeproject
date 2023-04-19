@@ -75,4 +75,19 @@
             #{cid}
         </foreach>
     </delete>
+
+    <select id="findVOByCids" resultMap="CartVOMap">
+        SELECT
+            cid, uid, cart.gid, cart.price, goods.title, goods.image, goods.good_type
+        FROM
+            cart LEFT JOIN goods ON cart.gid = goods.gid
+        WHERE
+            cid in (
+                <!--   collection转入的数据，数组array,结合list等等    -->
+                <foreach collection="array" item="cid" separator=",">
+                    #{cid}
+                </foreach>
+            )
+        ORDER BY cart.created_time DESC
+    </select>
 </mapper>

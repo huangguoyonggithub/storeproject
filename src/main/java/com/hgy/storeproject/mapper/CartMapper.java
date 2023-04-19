@@ -72,4 +72,11 @@ public interface CartMapper {
      * @return 受影响的行数
      */
     Integer deleteCartByCids(String[] ids);
+
+    /**
+     * 根据cid数组查询数据
+     * @param cids cid数组
+     * @return 找到的多个数据或者null
+     */
+    List<CartVO> findVOByCids(Integer[] cids);
 }

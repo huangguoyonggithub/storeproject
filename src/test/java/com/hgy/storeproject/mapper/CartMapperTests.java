@@ -69,8 +69,8 @@ public class CartMapperTests {
     }
 
     @Test
-    public void deleteByCids() {
-        String[] ids= {"19", "20"};
-        cartMapper.deleteCartByCids(ids);
+    public void findVOByCids() {
+        Integer[] cids = {31,32,33,34,35};
+        System.out.println(cartMapper.findVOByCids(cids));
     }
 }
