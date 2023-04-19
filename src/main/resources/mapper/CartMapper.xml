@@ -78,7 +78,7 @@
 
     <select id="findVOByCids" resultMap="CartVOMap">
         SELECT
-            cid, uid, cart.gid, cart.price, goods.title, goods.image, goods.good_type
+            cid, uid, cart.gid, cart.price, goods.title, goods.image, goods.good_type,goods.status
         FROM
             cart LEFT JOIN goods ON cart.gid = goods.gid
         WHERE

@@ -11,6 +11,7 @@ public class CartVO implements Serializable {
     private String title;
     private String image;
     private String goodType;
+    private String status;
 
     public Integer getCid() {
         return cid;
@@ -68,6 +69,14 @@ public class CartVO implements Serializable {
         this.goodType = goodType;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -79,12 +88,13 @@ public class CartVO implements Serializable {
                 Objects.equals(getPrice(), cartVO.getPrice()) &&
                 Objects.equals(getTitle(), cartVO.getTitle()) &&
                 Objects.equals(getImage(), cartVO.getImage()) &&
-                Objects.equals(getGoodType(), cartVO.getGoodType());
+                Objects.equals(getGoodType(), cartVO.getGoodType()) &&
+                Objects.equals(getStatus(), cartVO.getStatus());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getCid(), getUid(), getGid(), getPrice(), getTitle(), getImage(), getGoodType());
+        return Objects.hash(getCid(), getUid(), getGid(), getPrice(), getTitle(), getImage(), getGoodType(), getStatus());
     }
 
     @Override
@@ -97,6 +107,7 @@ public class CartVO implements Serializable {
                 ", title='" + title + '\'' +
                 ", image='" + image + '\'' +
                 ", goodType='" + goodType + '\'' +
+                ", status='" + status + '\'' +
                 '}';
     }
 }
