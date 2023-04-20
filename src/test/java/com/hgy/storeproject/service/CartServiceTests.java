@@ -35,7 +35,7 @@ public class CartServiceTests {
     public void deleteCartVOByCid() {
         try {
             Integer cid = 2 ;
-            cartService.deleteCartVOByCid(cid);
+            cartService.deleteCartVOByCid(cid,8);
             System.out.println("OK.");
         } catch (ServiceException e) {
             System.out.println(e.getClass().getSimpleName());

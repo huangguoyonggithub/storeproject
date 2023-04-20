@@ -10,6 +10,7 @@ import com.hgy.storeproject.service.IUserService;
 import com.hgy.storeproject.service.ex.AccessDeniedException;
 import com.hgy.storeproject.service.ex.DeleteException;
 import com.hgy.storeproject.service.ex.InsertException;
+import com.hgy.storeproject.service.ex.UserNotFoundException;
 import com.hgy.storeproject.vo.CartVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,8 @@ public class OrderServiceImpl implements IOrderService {
     private OrderMapper orderMapper;
     @Autowired
     private ICartService cartService;
+    @Autowired
+    private IUserService userService;
 
     @Override
     public Order createOrder(Integer[] cids, Integer uid, String username) {
@@ -48,6 +51,8 @@ public class OrderServiceImpl implements IOrderService {
         order.setTotalPrice(totalPrice);
         // 补全数据：下单时间
         order.setOrderTime(now);
+        // 补全数据：完成支付
+        order.setPayTime(now);
         // 补全数据：日志
         order.setCreatedUser(username);
         order.setCreatedTime(now);
@@ -67,6 +72,7 @@ public class OrderServiceImpl implements IOrderService {
             item.setOid(order.getOid());
             // 补全数据：pid, title, image, price, num
             item.setGid(cart.getGid());
+            item.setUid(cart.getUid());
             item.setTitle(cart.getTitle());
             item.setImage(cart.getImage());
             item.setPrice(cart.getPrice());
@@ -79,10 +85,26 @@ public class OrderServiceImpl implements IOrderService {
             // 插入订单商品数据
             Integer rows2 = orderMapper.insertOrderItem(item);
             if (rows2 != 1) {
-                throw new InsertException("插入订单商品数据时出现未知错误，请联系系统管理员");
+                throw new InsertException("插入订单商品数据时出现未知错误，请联系系统管理员！");
+            }
+            //删除已完成购买的购物车数据
+            Integer rows3 = cartService.deleteCartVOByCid(cart.getCid(),cart.getUid());
+            if (rows3 != 1){
+                throw new DeleteException("删除购物车数据时产生未知错误，请联系系统管理员！");
             }
         }
 
         return order;
     }
+
+    @Override
+    public List<OrderItem> findOrderItemByUid(Integer uid) {
+        User user = userService.getByUid(uid);
+        if (user == null){
+            throw new UserNotFoundException("该用户数据不存在，请重新登录！");
+        }
+
+        return orderMapper.findOrderItemByUid(uid);
+    }
+
 }

@@ -17,7 +17,7 @@ public class OrderServiceTests {
     @Test
     public void createOrder(){
 //        Order createOrder(Integer[] cids, Integer uid, String username);
-        Integer[] cids = {35,36};
+        Integer[] cids = {39,40};
         Order order = orderService.createOrder(cids,8,"admin");
         System.out.println(order);
     }

@@ -7,6 +7,7 @@ public class OrderItem extends BaseEntity implements Serializable {
     private Integer id;
     private Integer oid;
     private Integer gid;
+    private Integer uid;
     private String title;
     private String image;
     private Double price;
@@ -34,6 +35,14 @@ public class OrderItem extends BaseEntity implements Serializable {
 
     public void setGid(Integer gid) {
         this.gid = gid;
+    }
+
+    public Integer getUid() {
+        return uid;
+    }
+
+    public void setUid(Integer uid) {
+        this.uid = uid;
     }
 
     public String getTitle() {
@@ -77,6 +86,7 @@ public class OrderItem extends BaseEntity implements Serializable {
         return Objects.equals(getId(), orderItem.getId()) &&
                 Objects.equals(getOid(), orderItem.getOid()) &&
                 Objects.equals(getGid(), orderItem.getGid()) &&
+                Objects.equals(getUid(), orderItem.getUid()) &&
                 Objects.equals(getTitle(), orderItem.getTitle()) &&
                 Objects.equals(getImage(), orderItem.getImage()) &&
                 Objects.equals(getPrice(), orderItem.getPrice()) &&
@@ -85,7 +95,7 @@ public class OrderItem extends BaseEntity implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), getId(), getOid(), getGid(), getTitle(), getImage(), getPrice(), getStatus());
+        return Objects.hash(super.hashCode(), getId(), getOid(), getGid(), getUid(), getTitle(), getImage(), getPrice(), getStatus());
     }
 
     @Override
@@ -94,6 +104,7 @@ public class OrderItem extends BaseEntity implements Serializable {
                 "id=" + id +
                 ", oid=" + oid +
                 ", gid=" + gid +
+                ", uid=" + uid +
                 ", title='" + title + '\'' +
                 ", image='" + image + '\'' +
                 ", price=" + price +

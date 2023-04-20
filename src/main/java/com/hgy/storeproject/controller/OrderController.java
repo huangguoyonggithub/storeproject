@@ -1,6 +1,7 @@
 package com.hgy.storeproject.controller;
 
 import com.hgy.storeproject.entity.Order;
+import com.hgy.storeproject.entity.OrderItem;
 import com.hgy.storeproject.service.IOrderService;
 import com.hgy.storeproject.util.JsonResult;
 import com.hgy.storeproject.vo.CartVO;
@@ -28,5 +29,15 @@ public class OrderController extends BaseController{
         Order data = orderService.createOrder(cids,uid,username);
         // 返回成功与数据
         return new JsonResult<Order>(OK, data);
+    }
+
+    @RequestMapping("order_item")
+    public JsonResult<List<OrderItem>> findOrderItem(HttpSession session) {
+        // 从Session中取出uid和username
+        Integer uid = getUidFromSession(session);
+        // 调用业务对象执行业务
+        List<OrderItem> data = orderService.findOrderItemByUid(uid);
+        // 返回成功与数据
+        return new JsonResult<List<OrderItem>>(OK, data);
     }
 }

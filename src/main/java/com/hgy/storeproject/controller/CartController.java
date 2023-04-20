@@ -40,9 +40,11 @@ public class CartController extends BaseController{
     }
 
     @RequestMapping("{cid}/delete_cart")
-    public JsonResult<Void> DeleteCart(@PathVariable("cid") Integer cid) {
+    public JsonResult<Void> DeleteCart(@PathVariable("cid") Integer cid,HttpSession session) {
+        // 从Session中获取uid
+        Integer uid = getUidFromSession(session);
         // 调用业务对象执行添加到购物车
-        cartService.deleteCartVOByCid(cid);
+        cartService.deleteCartVOByCid(cid,uid);
         // 返回成功
         return new JsonResult<Void>(OK);
     }

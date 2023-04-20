@@ -87,7 +87,11 @@ public class CartServiceImpl implements ICartService {
     }
 
     @Override
-    public void deleteCartVOByCid(Integer cid) {
+    public Integer deleteCartVOByCid(Integer cid,Integer uid) {
+        User user = userService.getByUid(uid);
+        if (user == null){
+            throw new AccessDeniedException("用户登录过时,请重新登录");
+        }
         // 根据参数cid查询购物车中的数据
         CartVO result = cartMapper.findVOByCid(cid);
         // 判断查询结果是否为null
@@ -100,6 +104,7 @@ public class CartServiceImpl implements ICartService {
             if (rows != 1) {
                 throw new DeleteException("删除该购物车数据时产生未知错误！");
             }
+            return rows;
         }
     }
 

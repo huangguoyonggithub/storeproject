@@ -50,8 +50,12 @@
 
     <insert id="insertOrderItem" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO order_item
-            (oid, gid, title, image, price, status, created_time, created_user, modified_time ,modified_user)
+            (oid, gid, uid,title, image, price, status, created_time, created_user, modified_time ,modified_user)
         VALUES
-            (#{oid}, #{gid}, #{title}, #{image}, #{price}, #{status}, #{createdTime}, #{createdUser}, #{modifiedTime}, #{modifiedUser})
+            (#{oid}, #{gid}, #{uid}, #{title}, #{image}, #{price}, #{status}, #{createdTime}, #{createdUser}, #{modifiedTime}, #{modifiedUser})
     </insert>
+
+    <select id="findOrderItemByUid" resultMap="OrderItemEntityMap">
+        SELECT * FROM order_item WHERE uid = #{uid}
+    </select>
 </mapper>

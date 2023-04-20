@@ -31,11 +31,20 @@ public class orderMapperTests {
         OrderItem orderItem = new OrderItem();
         orderItem.setOid(1);
         orderItem.setGid(26);
+        orderItem.setUid(8);
         orderItem.setTitle("锯齿爪刀（★） | 枯焦之色 (略有磨损)");
         orderItem.setPrice(1599.5);
         orderItem.setImage("https://g.fp.ps.netease.com/market/file/5b680b32143cfad337d94d3eOHejWez5");
         orderItem.setCreatedTime(new Date());
         orderItem.setCreatedUser("admin");
         orderMapper.insertOrderItem(orderItem);
+    }
+
+    @Test
+    public void findOrderItemByUid() {
+        List<OrderItem> orderItems = orderMapper.findOrderItemByUid(8);
+        for (OrderItem item : orderItems){
+            System.out.println(item);
+        }
     }
 }

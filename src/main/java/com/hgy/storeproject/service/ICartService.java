@@ -30,8 +30,9 @@ public interface ICartService {
     /**
      * 根据cid删除购物车数据
      * @param cid 购物车id
+     * @param uid 用户id
      */
-    void deleteCartVOByCid(Integer cid);
+    Integer deleteCartVOByCid(Integer cid,Integer uid);
 
     /**
      * 批量删除cart

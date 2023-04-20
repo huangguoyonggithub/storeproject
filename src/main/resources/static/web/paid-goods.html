@@ -33,7 +33,7 @@
         }
         #btn-payment-form{
             position: relative;
-            left: 10%;
+            left: 5%;
         }
     </style>
 </head>
@@ -63,11 +63,11 @@
                     <div class="colxl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="page-title-wrapper">
                             <div class="page-title-box">
-                                <h4 class="page-title bold">Payment</h4>
+                                <h4 class="page-title bold">Paid Goods</h4>
                             </div>
                             <div class="breadcrumb-list">
                                 <ul>
-                                    <li class="breadcrumb-link active">Payment</li>
+                                    <li class="breadcrumb-link active">Paid Goods</li>
                                 </ul>
                             </div>
                         </div>
@@ -79,7 +79,7 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card table-card">
                             <div class="card-header pb-0">
-                                <h4>Payment</h4>
+                                <h4>Paid Goods</h4>
                             </div>
                             <div class="card-body pb-4">
                                 <div class="chart-holder">
@@ -88,18 +88,17 @@
                                         <table class="table table-styled mb-0" id="table">
                                             <thead>
                                                 <tr>
-                                                    <th style="display: none"></th>
-                                                    <th>
-                                                        全选<input id="checkbox-all" type="checkbox"><label for="checkbox-all"></label>
-                                                    </th>
+                                                    <th>所属订单号</th>
                                                     <th>装备展示</th>
                                                     <th>装备名称</th>
-                                                    <th>类型</th>
                                                     <th>价格</th>
+                                                    <th>查看订单</th>
+                                                    <th>发货</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="cart-list">
                                                 <tr>
+                                                    <td>Dining Chair</td>
                                                     <td>
                                                         <div class="img-chair">
                                                             <img src="../picture/product.png" alt=" ">
@@ -107,39 +106,42 @@
                                                     </td>
                                                     <td>Dining Chair</td>
                                                     <td>$86</td>
-                                                    <td><a href="javascript:;"><i class="far fa-times-circle"></i></a></td>
-                                                    <td>$375</td>
+                                                    <td><a href="index.html" class="btn btn-success squer-btn mt-2 mr-2">查看订单</a></td>
+                                                    <td><a href="index.html" class="btn btn-success squer-btn mt-2 mr-2">立即发货</a></td>
                                                 </tr>
 												<tr>
+                                                    <td>Dining Chair</td>
                                                     <td>
                                                         <div class="img-chair">
-                                                            <img src="../picture/product2.png" alt=" ">
+                                                            <img src="../picture/product.png" alt=" ">
                                                         </div>
                                                     </td>
-                                                    <td>Ceiling Light</td>
-                                                    <td>$79</td>
-                                                    <td><a href="javascript:;"><i class="far fa-times-circle"></i></a></td>
-                                                    <td>$275</td>
+                                                    <td>Dining Chair</td>
+                                                    <td>$86</td>
+                                                    <td><a href="index.html" class="btn btn-success squer-btn mt-2 mr-2">查看订单</a></td>
+                                                    <td><a href="index.html" class="btn btn-success squer-btn mt-2 mr-2">立即发货</a></td>
                                                 </tr>
 												<tr>
+                                                    <td>Dining Chair</td>
                                                     <td>
                                                         <div class="img-chair">
-                                                            <img src="../picture/product3.png" alt=" ">
+                                                            <img src="../picture/product.png" alt=" ">
                                                         </div>
                                                     </td>
-                                                    <td>Wooden Sofa</td>
-                                                    <td>$96</td>
-                                                    <td><a href="javascript:;"><i class="far fa-times-circle"></i></a></td>
-                                                    <td>$475</td>
+                                                    <td>Dining Chair</td>
+                                                    <td>$86</td>
+                                                    <td><a href="index.html" class="btn btn-success squer-btn mt-2 mr-2">查看订单</a></td>
+                                                    <td><a href="index.html" class="btn btn-success squer-btn mt-2 mr-2">立即发货</a></td>
                                                 </tr>
                                             </tbody>
                                             <tfoot>
                                                 <tr>
                                                     <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
                                                     <td> </td>
                                                     <td> </td>
-                                                    <td><a href="orderConfirm.html" class="btn btn-danger squer-btn mt-2 mr-2">返回订单</a></td>
-                                                    <td><input type="submit" value="  结  算  " class="btn btn-success squer-btn mt-2 mr-2" /></td>
+                                                    <td> </td>
+                                                    <td><a href="index.html" class="btn btn-success squer-btn mt-2 mr-2">返回首页</a></td>
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -166,7 +168,46 @@
         $(document).ready(function () {
             $('#sidebar').load('sidebar.html'); //加载公共html部分
             $('#header').load('header.html'); //加载公共html部分
+            showOrderItems();
         })
+
+        function showOrderItems() {
+            $("#cart-list").empty();
+            $.ajax({
+                url: "/orders/order_item",
+                type: "GET",
+                dataType: "JSON",
+                success: function(json) {
+                    if (json.state == 200){
+                        let list = json.data;
+                        for (let i = 0; i < list.length; i++) {
+                            let tr = '<tr>'
+                                + '<td>#{oid}</td>'
+                                + '<td>'
+                                + '<div class="img-chair">'
+                                + '<img src="#{image}" alt=" ">'
+                                + '</div>'
+                                + '</td>'
+                                + '<td>#{title}</td>'
+                                + '<td>￥<b>#{price}</b></td>'
+                                + '<td><a href="orderInfo.html" class="btn btn-success squer-btn mt-2 mr-2">查看订单</a></td>'
+                                + '<td><a href="warehouse.html" class="btn btn-success squer-btn mt-2 mr-2">立即发货</a></td>'
+                                + '</tr>';
+
+                            tr = tr.replace(/#{oid}/g, list[i].oid);
+                            tr = tr.replace(/#{image}/g, list[i].image);
+                            tr = tr.replace(/#{title}/g, list[i].title);
+                            tr = tr.replace(/#{price}/g, list[i].price);
+
+                            $("#cart-list").append(tr);
+                        }
+                    }
+                },
+                error : function (xhr) {
+                    alert("购物车列表数据加载产生未知异常，" + xhr.status);
+                }
+            });
+        }
     </script>
 </body>
 
