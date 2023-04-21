@@ -107,4 +107,23 @@ public class OrderServiceImpl implements IOrderService {
         return orderMapper.findOrderItemByUid(uid);
     }
 
+    @Override
+    public List<OrderItem> findOrderItemByUidAndOid(Integer uid, Integer oid) {
+        User user = userService.getByUid(uid);
+        if (user == null){
+            throw new UserNotFoundException("该用户数据不存在，请重新登录！");
+        }
+
+        return orderMapper.findOrderItemByUidAndOid(uid,oid);
+    }
+
+    @Override
+    public Order findOrder(Integer uid, Integer oid) {
+        User user = userService.getByUid(uid);
+        if (user == null){
+            throw new UserNotFoundException("该用户数据不存在，请重新登录！");
+        }
+
+        return orderMapper.findOrder(uid,oid);
+    }
 }

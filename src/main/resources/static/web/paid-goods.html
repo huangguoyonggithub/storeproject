@@ -190,8 +190,8 @@
                                 + '</td>'
                                 + '<td>#{title}</td>'
                                 + '<td>￥<b>#{price}</b></td>'
-                                + '<td><a href="orderInfo.html" class="btn btn-success squer-btn mt-2 mr-2">查看订单</a></td>'
-                                + '<td><a href="warehouse.html" class="btn btn-success squer-btn mt-2 mr-2">立即发货</a></td>'
+                                + '<td><a href="orderInfo.html?oid=#{oid}" class="btn btn-success squer-btn mt-2 mr-2">查看订单</a></td>'
+                                + '<td><a href="warehouse.html?oid=#{oid}" class="btn btn-success squer-btn mt-2 mr-2">立即发货</a></td>'
                                 + '</tr>';
 
                             tr = tr.replace(/#{oid}/g, list[i].oid);

@@ -47,4 +47,17 @@ public class orderMapperTests {
             System.out.println(item);
         }
     }
+
+    @Test
+    public void findOrderItemByUidAndOid() {
+        List<OrderItem> orderItems = orderMapper.findOrderItemByUidAndOid(8,5);
+        for (OrderItem item : orderItems){
+            System.out.println(item);
+        }
+    }
+
+    @Test
+    public void findOrder() {
+        System.out.println(orderMapper.findOrder(8,5));
+    }
 }

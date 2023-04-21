@@ -40,4 +40,24 @@ public class OrderController extends BaseController{
         // 返回成功与数据
         return new JsonResult<List<OrderItem>>(OK, data);
     }
+
+    @RequestMapping("{oid}/order_item_oid")
+    public JsonResult<List<OrderItem>> findOrderItemByOid(@PathVariable("oid")Integer oid,HttpSession session) {
+        // 从Session中取出uid和username
+        Integer uid = getUidFromSession(session);
+        // 调用业务对象执行业务
+        List<OrderItem> data = orderService.findOrderItemByUidAndOid(uid,oid);
+        // 返回成功与数据
+        return new JsonResult<List<OrderItem>>(OK, data);
+    }
+
+    @RequestMapping("{oid}/order")
+    public JsonResult<Order> findOrder(@PathVariable("oid")Integer oid,HttpSession session) {
+        // 从Session中取出uid和username
+        Integer uid = getUidFromSession(session);
+        // 调用业务对象执行业务
+        Order data = orderService.findOrder(uid,oid);
+        // 返回成功与数据
+        return new JsonResult<Order>(OK, data);
+    }
 }

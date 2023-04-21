@@ -56,6 +56,14 @@
     </insert>
 
     <select id="findOrderItemByUid" resultMap="OrderItemEntityMap">
-        SELECT * FROM order_item WHERE uid = #{uid}
+        SELECT * FROM order_item WHERE uid = #{uid} ORDER BY oid DESC
+    </select>
+
+    <select id="findOrderItemByUidAndOid" resultMap="OrderItemEntityMap">
+        SELECT * FROM order_item WHERE uid = #{uid} AND oid = #{oid}
+    </select>
+
+    <select id="findOrder" resultMap="OrderEntityMap">
+        SELECT * FROM orders WHERE uid = #{uid} AND oid = #{oid}
     </select>
 </mapper>

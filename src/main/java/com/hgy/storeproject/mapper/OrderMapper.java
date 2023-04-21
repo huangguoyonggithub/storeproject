@@ -23,9 +23,25 @@ public interface OrderMapper {
     Integer insertOrderItem(OrderItem orderItem);
 
     /**
-     * 查询某用户的购物车数据
+     * 查询某用户已付款商品信息
      * @param uid 用户id
-     * @return 该用户的购物车数据的列表
+     * @return 该用户已付款商品信息列表或者null
      */
     List<OrderItem> findOrderItemByUid(Integer uid);
+
+    /**
+     * 查询某用户的某个订单的商品信息
+     * @param uid 用户id
+     * @param oid 订单id
+     * @return 该用户某个订单的商品信息或者null
+     */
+    List<OrderItem> findOrderItemByUidAndOid(Integer uid,Integer oid);
+
+    /**
+     * 查询某个订单的信息
+     * @param uid 用户id
+     * @param oid 订单id
+     * @return 某个订单的信息或者null
+     */
+    Order findOrder(Integer uid,Integer oid);
 }

@@ -142,7 +142,7 @@
                                                     <td> </td>
                                                     <td><a href="index.html" class="btn btn-danger squer-btn mt-2 mr-2">返回首页</a></td>
                                                     <td><input type="submit" value="  结  算  " class="btn btn-success squer-btn mt-2 mr-2" /></td>
-                                                    <td><a class="btn btn-danger squer-btn mt-2 mr-2" id="delete-all">删除选中</a></td>
+                                                    <td></td>
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -241,56 +241,6 @@
                 $(".check")[i].checked = this.checked
             }
         })
-
-        // $(document).on("click",".checkbox")
-
-        // $("#delete-all").click(function () {
-        //     let flag = $(".checkbox").checked;
-        //     console.log(flag);
-        //     let str = "";
-        //     let id = "";
-        //     if (flag.length===0){
-        //         alert("请选中想要删除的商品")
-        //     }else {
-        //         if (confirm("您确定要删除"+ flag.length +"条数据吗？")){
-        //             $.each(flag, function (index, item) {
-        //                 id = $(item).val();
-        //                 alert(id);
-        //                 if (id != null){
-        //                     str += id + ",";
-        //                 }
-        //             });
-        //         }
-        //     }
-        //
-        //     $.ajax({
-        //         url: "/carts/delete_carts",
-        //         data: {"cid":str},
-        //         type: "POST",
-        //         dataType: "JSON",
-        //         success: function(json) {
-        //             if (json.state == 200) {
-        //                 alert("删除购物车失败！" + json.message);
-        //             } else {
-        //                 alert("删除成功！")
-        //                 $("#table").load("/carts");
-        //             }
-        //         },
-        //         error: function(xhr) {
-        //             alert("您的登录信息已经过期，请重新登录！HTTP响应码：" + xhr.status);
-        //             location.href = "login.html";
-        //         }
-        //     });
-        // });
-
-        /*
-        $(function() {
-            //返回链接
-            $(".link-account").click(function() {
-                location.href = "orderConfirm.html";
-            })
-        })
-        */
     </script>
 </body>
 
