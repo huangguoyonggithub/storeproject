@@ -60,4 +60,9 @@ public class orderMapperTests {
     public void findOrder() {
         System.out.println(orderMapper.findOrder(8,5));
     }
+
+    @Test
+    public void findOrderItemByMid() {
+        System.out.println(orderMapper.findOrderItemByMid(5));
+    }
 }

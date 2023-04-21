@@ -33,7 +33,7 @@
             property属性:表示类中的属性名称
         -->
         <!--在定义映射规则时主键是不可以省略的-->
-        <id column="id" property="id"/>
+        <id column="mid" property="mid"/>
         <result column="created_time" property="createdTime"/>
         <result column="created_user" property="createdUser"/>
         <result column="modified_time" property="modifiedTime"/>
@@ -48,7 +48,7 @@
         )
     </insert>
 
-    <insert id="insertOrderItem" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertOrderItem" useGeneratedKeys="true" keyProperty="mid">
         INSERT INTO order_item
             (oid, gid, uid,title, image, price, status, created_time, created_user, modified_time ,modified_user)
         VALUES
@@ -65,5 +65,9 @@
 
     <select id="findOrder" resultMap="OrderEntityMap">
         SELECT * FROM orders WHERE uid = #{uid} AND oid = #{oid}
+    </select>
+
+    <select id="findOrderItemByMid" resultMap="OrderItemEntityMap">
+        SELECT * FROM order_item WHERE mid = #{mid}
     </select>
 </mapper>

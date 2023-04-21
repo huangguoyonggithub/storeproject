@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http : //mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--namespace属性:用于指定当前的映射文件和哪个接口进行映射，需要指定接口的文件路径，需要标注包的完整路径接口-->
+<mapper namespace="com.hgy.storeproject.mapper.WarehouseMapper">
+    <!--自定义映射规则: resultMap标签来完成映射规则的定义上-->
+    <!--
+        id属性:标签给这个映射负责分配一个唯一的id值，对应的就是resultHap="id属性的值"属性的取值
+        type属性:取值是一个类，表示的是数据库中的查询结果与Java中哪个实体类进行结果集的映射
+    -->
+    <resultMap id="WarehouseEntityMap" type="com.hgy.storeproject.entity.Warehouse">
+        <!--将表的资源和类(实体类)的属性不一致的字段进行匹配指定，名称一致的字段可以省略不写-->
+        <!--配合完成名称不一致的映射:
+            column属性:表示表中的资源名称
+            property属性:表示类中的属性名称
+        -->
+        <!--在定义映射规则时主键是不可以省略的-->
+        <id column="wid" property="wid"/>
+        <result column="created_time" property="createdTime"/>
+        <result column="created_user" property="createdUser"/>
+        <result column="modified_time" property="modifiedTime"/>
+        <result column="modified_user" property="modifiedUser"/>
+    </resultMap>
+
+    <insert id="insertWarehouse" useGeneratedKeys="true" keyProperty="wid">
+        INSERT INTO warehouse (
+            uid, gid, price, title, image, status, created_time, created_user, modified_time ,modified_user
+        ) VALUES (
+            #{uid}, #{gid}, #{price}, #{title}, #{image}, #{status}, #{createdTime}, #{createdUser}, #{modifiedTime}, #{modifiedUser}
+        )
+    </insert>
+
+    <select id="findWarehouseByUid" resultMap="WarehouseEntityMap">
+        SELECT * FROM warehouse WHERE uid = #{uid} ORDER BY wid DESC
+    </select>
+
+    <update id="updateWarehouseGoodsUser">
+        UPDATE warehouse SET uid = #{uid},
+        modified_user = #{modifiedUser},
+        modified_time = #{modifiedTime}
+        WHERE status = #{status}
+    </update>
+</mapper>

@@ -103,7 +103,7 @@
                                                         <th width="15%">装备展示</th>
                                                         <th width="35%">装备名称</th>
                                                         <th width="15%">装备价格</th>
-                                                        <th width="15%">交易码</th>
+                                                        <th width="15%">交易时间</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody class="orders-body" id="orders-item">
@@ -164,13 +164,13 @@
                                 + '<td><img src="#{image}" class="img-responsive" /></td>'
                                 + '<td>#{title}</td>'
                                 + '<td>¥<span>#{price}</span></td>'
-                                + '<td><span>#{status}</span></td>'
+                                + '<td><span>#{created_time}</span></td>'
                                 + '</tr>';
 
                             tr = tr.replace(/#{image}/g, list[i].image);
                             tr = tr.replace(/#{title}/g, list[i].title);
                             tr = tr.replace(/#{price}/g, list[i].price);
-                            tr = tr.replace(/#{status}/g, list[i].status);
+                            tr = tr.replace(/#{created_time}/g, list[i].createdTime);
 
                             $("#orders-item").append(tr);
                         }

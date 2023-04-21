@@ -44,4 +44,11 @@ public interface OrderMapper {
      * @return 某个订单的信息或者null
      */
     Order findOrder(Integer uid,Integer oid);
+
+    /**
+     * 根据mid查询已购商品的某商品数据
+     * @param mid 已购商品id
+     * @return 已购商品的某商品数据或者null
+     */
+    OrderItem findOrderItemByMid(Integer mid);
 }

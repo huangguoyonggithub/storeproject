@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class OrderItem extends BaseEntity implements Serializable {
-    private Integer id;
+    private Integer mid;
     private Integer oid;
     private Integer gid;
     private Integer uid;
@@ -13,12 +13,12 @@ public class OrderItem extends BaseEntity implements Serializable {
     private Double price;
     private String status;
 
-    public Integer getId() {
-        return id;
+    public Integer getMid() {
+        return mid;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setMid(Integer mid) {
+        this.mid = mid;
     }
 
     public Integer getOid() {
@@ -83,7 +83,7 @@ public class OrderItem extends BaseEntity implements Serializable {
         if (!(o instanceof OrderItem)) return false;
         if (!super.equals(o)) return false;
         OrderItem orderItem = (OrderItem) o;
-        return Objects.equals(getId(), orderItem.getId()) &&
+        return Objects.equals(getMid(), orderItem.getMid()) &&
                 Objects.equals(getOid(), orderItem.getOid()) &&
                 Objects.equals(getGid(), orderItem.getGid()) &&
                 Objects.equals(getUid(), orderItem.getUid()) &&
@@ -95,13 +95,13 @@ public class OrderItem extends BaseEntity implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), getId(), getOid(), getGid(), getUid(), getTitle(), getImage(), getPrice(), getStatus());
+        return Objects.hash(super.hashCode(), getMid(), getOid(), getGid(), getUid(), getTitle(), getImage(), getPrice(), getStatus());
     }
 
     @Override
     public String toString() {
         return "OrderItem{" +
-                "id=" + id +
+                "mid=" + mid +
                 ", oid=" + oid +
                 ", gid=" + gid +
                 ", uid=" + uid +
