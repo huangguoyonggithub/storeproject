@@ -61,39 +61,6 @@
         SELECT * FROM users WHERE uid = #{uid}
     </select>
 
-    <!-- 根据uid更新用户个人资料：Integer updateInfoByUid(User user) -->
-    <update id="updateInfoByUid">
-        UPDATE
-        t_user
-        SET
-        <!--if表示条件判断标签，test 接收的是- -个返回值为boolean类型的条件,
-              如果test条件的结果为true则执行if标签内部的语句-->
-        <if test="phone != null">phone = #{phone},</if>
-        <if test="email != null">email = #{email},</if>
-        <if test="gender != null">gender = #{gender},</if>
-        modified_user = #{modifiedUser},
-        modified_time = #{modifiedTime}
-        WHERE
-        uid = #{uid}
-    </update>
-
-    <!-- 根据uid更新用户的头像
-	     Integer updateAvatarByUid(
-		    @Param("uid") Integer uid,
-		    @Param("avatar") String avatar,
-		    @Param("modifiedUser") String modifiedUser,
-		    @Param("modifiedTime") Date modifiedTime) -->
-    <update id="updateAvatarByUid">
-        UPDATE
-        t_user
-        SET
-        avatar = #{avatar},
-        modified_user = #{modifiedUser},
-        modified_time = #{modifiedTime}
-        WHERE
-        uid = #{uid}
-    </update>
-
     <!-- 根据用户email查询用户数据：User findByEmail(String email) -->
     <select id="findByEmail" resultMap="UserEntityMap">
         SELECT * FROM users WHERE email = #{email}
@@ -105,25 +72,18 @@
         WHERE email = #{email}
     </update>
 
-    <update id="updateInformationByUid">
-        UPDATE users SET username = #{username},
-        email = #{email},
-        gender = #{gender},
-        phone = #{phone},
-        modified_user = #{modifiedUser},
-        modified_time = #{modifiedTime}
-        WHERE uid = #{uid}
-    </update>
-
-    <update id="updateIntroductionByUid">
-        UPDATE users SET introduction = #{introduction},
-        modified_user = #{modifiedUser},
-        modified_time = #{modifiedTime}
-        WHERE uid = #{uid}
-    </update>
-
     <update id="updateWalletByUid">
         UPDATE users SET wallet = #{wallet},
+        modified_user = #{modifiedUser},
+        modified_time = #{modifiedTime}
+        WHERE uid = #{uid}
+    </update>
+
+    <update id="updateInformationByUid">
+        UPDATE users SET phone = #{phone},
+        email = #{email},
+        gender = #{gender},
+        introduction = #{introduction},
         modified_user = #{modifiedUser},
         modified_time = #{modifiedTime}
         WHERE uid = #{uid}

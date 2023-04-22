@@ -26,7 +26,7 @@ public class WarehouseServiceTests {
 
     @Test
     public void findWarehouseByUid(){
-        List<Warehouse> warehouses = warehouseService.findWarehouseByUid(9);
+        List<Warehouse> warehouses = warehouseService.findWarehouseByUid(8);
         for (Warehouse item : warehouses){
             System.out.println(item);
         }

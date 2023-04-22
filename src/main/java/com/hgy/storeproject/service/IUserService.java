@@ -48,26 +48,26 @@ public interface IUserService {
     void changePasswordByEmail(String email,String newPassword);
 
     /**
-     * 更新用户信息
+     * 余额充值
      * @param uid 用户uid
-     * @param username 用户名字
-     * @param email 用户邮箱
-     * @param gender 用户性别
-     * @param phone 用户电话
+     * @param wallet 余额
      */
-    void changeInformationByUid(Integer uid,String username,String email,Integer gender,String phone);
-
-    /**
-     * 更新用户介绍
-     * @param uid 用户uid
-     * @param introduction 用户介绍
-     */
-    void changeIntroductionByUid(Integer uid,String introduction);
+    void updateWalletByUid(Integer uid,Double wallet);
 
     /**
      * 余额充值
      * @param uid 用户uid
-     * @param wallet 受影响行数
+     * @param wallet 余额
      */
-    void updateWalletByUid(Integer uid,Double wallet);
+    void rechargeWalletByUid(Integer uid,Double wallet);
+
+    /**
+     * 修改个人信息
+     * @param uid 用户id
+     * @param phone 新手机号
+     * @param email 新邮箱
+     * @param gender 新性别
+     * @param introduction 新介绍
+     */
+    void changeInformationByUid(Integer uid,String phone,String email,Integer gender,String introduction);
 }

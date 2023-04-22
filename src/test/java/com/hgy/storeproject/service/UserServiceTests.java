@@ -83,17 +83,12 @@ public class UserServiceTests {
     }
 
     @Test
-    public void changeInformation(){
-        userService.changeInformationByUid(8,"管理员","5555555@qq.com",1,"1008611");
-    }
-
-    @Test
-    public void changeIntroduction(){
-        userService.changeIntroductionByUid(8,"牛啊！！！");
-    }
-
-    @Test
     public void changeWallet(){
         userService.updateWalletByUid(8,10086.9);
+    }
+
+    @Test
+    public void changeInformationByUid(){
+        userService.changeInformationByUid(9,"111111","6666@qq.com",1,"滚滚滚");
     }
 }

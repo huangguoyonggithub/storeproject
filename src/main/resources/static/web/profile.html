@@ -29,6 +29,13 @@
 	<link rel="stylesheet" id="theme-change" type="text/css" href="">
     <!--  icon  -->
     <link rel="stylesheet" type="text/css" href="../css/icon.css">
+
+    <style type="text/css">
+        #introduction-setting{
+            width: 100%;
+            height: 330px;
+        }
+    </style>
 </head>
 
 
@@ -60,22 +67,24 @@
                           <div class="card-options"><a class="card-options-collapse" href="javascript:;" data-bs-toggle="card-collapse" data-bs-original-title="" title=""><i class="fe fe-chevron-up"></i></a><a class="card-options-remove" href="javascript:;" data-bs-toggle="card-remove" data-bs-original-title="" title=""><i class="fe fe-x"></i></a></div>
                         </div>
                         <div class="card-body">
-                          <form>
+                          <form id="information">
                             <div class="profile-title">
                                 <div class="media ad-profile2-img">
                                     <img alt="" src="../picture/user.jpg">
-                                  <div class="media-body">
-                                    <h5 class="mb-1"><input class="form-control" id="username" name="username"  placeholder="admin" data-bs-original-title="" title="" value=""></h5>
-                                  </div>
+                                    <div>
+                                        <h5 class="mb-1">
+                                            <input class="form-control" id="name"  maxlength="0" placeholder="your-name" data-bs-original-title="" title="" value="">
+                                        </h5>
+                                    </div>
                                 </div>
                             </div>
                             <div class="mb-3">
-                              <label class="form-label">介绍</label>
-                              <textarea class="form-control" rows="5" maxlength="0" spellcheck="false" placeholder="又是充满七万的一天！"></textarea>
+                              <label class="form-label">个人简介</label>
+                              <textarea class="form-control" id="introduction" maxlength="0"></textarea>
                             </div>
                             <div class="mb-3">
                               <label class="form-label">Email</label>
-                              <input class="form-control" id="email" name="email" maxlength="0" placeholder="your-email@domain.com" data-bs-original-title="" title="" value="">
+                              <input class="form-control" id="email" maxlength="0" placeholder="your-email@domain.com" data-bs-original-title="" title="" value="">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">性别</label>
@@ -89,11 +98,11 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">电话</label>
-                                <input class="form-control" id="phone" name="phone"  maxlength="0" placeholder="your-phone" data-bs-original-title="" title="" value="">
+                                <input class="form-control" id="phone"  maxlength="0" placeholder="your-phone" data-bs-original-title="" title="" value="">
                             </div>
                             <div class="mb-3">
                                   <label class="form-label">钱包</label>
-                                  <input class="form-control" id="wallet" name="wallet"  maxlength="0" placeholder="your-wallet" data-bs-original-title="" title="" value="">
+                                  <input class="form-control" id="wallet"  maxlength="0" placeholder="your-wallet" data-bs-original-title="" title="" value="">
                               </div>
                           </form>
                         </div>
@@ -105,62 +114,40 @@
                                     <h4>修改信息</h4>
                                 </div>
                                 <div class="card-body">
-                                    <form>
+                                    <form id="information-setting">
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                            <div class="form-group row">
-                                                <label class="col-md-2 col-form-label">用户名</label>
-                                                <div class="col-md-10">
-                                                    <input class="form-control" type="text" placeholder="Jenny">
-                                                </div>
-                                            </div>
                                             <div class="form-group row">
                                                 <label class="col-md-2 col-form-label">Email</label>
                                                 <div class="col-md-10">
-                                                    <input class="form-control" type="email" placeholder="example@domain.com" id="email-input">
+                                                    <input class="form-control"  name="email" type="text" placeholder="请输入邮箱" id="email-setting">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-md-2 col-form-label">性别</label>
                                                 <div class="col-md-10">
-                                                    <input class="form-control" type="password" placeholder="男">
+                                                    <input class="form-control" type="text" name="gender" placeholder="请输入'男'或者'女'" id="gender-setting">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-md-2 col-form-label">电话</label>
                                                 <div class="col-md-10">
-                                                    <input class="form-control" type="password" placeholder="123456789">
+                                                    <input class="form-control" id="phone-setting" name="phone" type="text" placeholder="请输入电话号码">
                                                 </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="col-md-2 col-form-label">个人简介</label>
+                                                <textarea id="introduction-setting" name="introduction" placeholder="请输入个人简介！"></textarea>
                                             </div>
                                             <div class="form-group row mb-0">
                                                 <div class="col-sm-10 offset-sm-2">
-                                                    <button class="btn btn-primary" type="button">重置</button>
-                                                    <input class="btn btn-light" type="submit">
+                                                    <button class="btn btn-primary" type="button" id="resetting">重置</button>
+                                                    <input class="btn btn-light" type="button" id="submit" value="提交">
                                                 </div>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
-                            </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>个性签名</h4>
-                            </div>
-                            <div class="card-body">
-                                <form>
-                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                        <div class="mb-3">
-                                            <textarea class="form-control" rows="5" maxlength="0" spellcheck="false" placeholder="牛B你就来！"></textarea>
-                                        </div>
-                                        <div class="form-group row mb-0">
-                                            <div class="col-sm-10 offset-sm-2">
-                                                <button class="btn btn-primary" type="button">重置</button>
-                                                <input class="btn btn-light" type="submit">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+                                </div>
                     </div>
                 </div>
                 <div class="ad-footer-btm">
@@ -186,20 +173,22 @@
         $(document).ready(function() {
             $('#sidebar').load('sidebar.html'); //加载公共html部分
             $('#header').load('header.html'); //加载公共html部分
+            showProfile();
+        });
+
+        function showProfile(){
             $.ajax({
                 url: "/users/get_by_uid",
                 type: "POST",
                 dataType: "json",
                 success: function(json) {
                     if (json.state == 200) {
-                        // console.log("username=" + json.data.username);
-                        // console.log("phone=" + json.data.phone);
-                        // console.log("email=" + json.data.email);
-                        // console.log("gender=" + json.data.gender);
-
-                        $("#username").val(json.data.username);
+                        console.log(json.data.username)
+                        $("#name").val(json.data.username);
                         $("#phone").val(json.data.phone);
                         $("#email").val(json.data.email);
+                        $("#wallet").val("￥" + json.data.wallet);
+                        $("#introduction").val(json.data.introduction);
 
                         let radio = json.data.gender == 0 ? $("#gender-female") : $("#gender-male");
                         // prop() 表示给某个元素添加属性及属性的值
@@ -209,8 +198,56 @@
                     }
                 }
             });
+        }
+
+        //重置
+        $("#resetting").click(function () {
+            $("#username-setting").val("");
+            $("#email-setting").val("");
+            $("#gender-setting").val("");
+            $("#phone-setting").val("");
+            $("#introduction-setting").val("");
         });
 
+        $("#submit").click(function () {
+            $.ajax({
+                url : "/users/change_information_by_uid",
+                type : "POST",
+                data : $("#information-setting").serialize(),
+                dataType : "json",
+                success : function (json) {
+                    if (json.state == 200){
+                        alert("密码个人信息成功");
+                        showProfile();
+                    }else {
+                        alert("个人信息修改失败");
+                    }
+                },
+                error : function (xhr) {
+                    alert("个人信息修改时产生未知的异常:"+xhr.status);
+                }
+            });
+        });
+
+        $("#recharge").click(function () {
+            $.ajax({
+                url : "/users/",
+                type : "POST",
+                data : $("#wallet").val(),
+                dataType : "json",
+                success : function (json) {
+                    if (json.state == 200){
+                        alert("密码个人信息成功");
+                        location.href = "index.html";
+                    }else {
+                        alert("个人信息修改失败");
+                    }
+                },
+                error : function (xhr) {
+                    alert("个人信息修改时产生未知的异常:"+xhr.status);
+                }
+            });
+        });
     </script>
 </body>
 

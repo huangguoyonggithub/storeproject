@@ -63,31 +63,6 @@ public interface UserMapper {
     Integer updatePasswordByEmail(String email, String password, Date modifiedTime);
 
     /**
-     *根据用户的uid来修改用户的密码
-     * @param uid 用户id
-     * @param username 用户输入的新名字
-     * @param email 用户输入的新邮箱
-     * @param gender 用户输入的新性别
-     * @param phone 用户输入的新电话
-     * @param modifiedUser 修改的执行者
-     * @param modifiedTime 修改的时间
-     * @return 返回值受影向的行数
-     */
-    Integer updateInformationByUid(Integer uid, String username,String email,Integer gender,String phone,
-                                String modifiedUser, Date modifiedTime);
-
-    /**
-     *根据用户的uid来修改用户的基本信息
-     * @param uid 用户id
-     * @param introduction 用户输入的新介绍
-     * @param modifiedUser 修改的执行者
-     * @param modifiedTime 修改的时间
-     * @return 返回值受影向的行数
-     */
-    Integer updateIntroductionByUid(Integer uid, String introduction,
-                                String modifiedUser, Date modifiedTime);
-
-    /**
      *根据用户的uid来修改用户的余额（）
      * @param uid 用户id
      * @param wallet 用户充值的额度
@@ -96,6 +71,20 @@ public interface UserMapper {
      * @return 返回值受影向的行数
      */
     Integer updateWalletByUid(Integer uid, Double wallet,
+                              String modifiedUser, Date modifiedTime);
+
+    /**
+     *根据用户的uid来修改用户的余额（）
+     * @param uid 用户id
+     * @param phone 用户输入新电话
+     * @param email 用户输入新邮箱
+     * @param gender 用户输入新性别
+     * @param introduction 用户输入新介绍
+     * @param modifiedUser 修改的执行者
+     * @param modifiedTime 修改的时间
+     * @return 返回值受影向的行数
+     */
+    Integer updateInformationByUid(Integer uid,String phone,String email,Integer gender,String introduction,
                                     String modifiedUser, Date modifiedTime);
 
 }

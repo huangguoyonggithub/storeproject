@@ -2,6 +2,7 @@ package com.hgy.storeproject.controller;
 
 import com.hgy.storeproject.entity.User;
 import com.hgy.storeproject.service.IUserService;
+import com.hgy.storeproject.service.ex.UserNotFoundException;
 import com.hgy.storeproject.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -93,30 +94,35 @@ public class UserController extends BaseController{
         return new JsonResult<Void>(OK);
     }
 
-    @RequestMapping("change_information_by_uid")
-    public JsonResult<Void> changeInformationByUid(String username,String email,Integer gender,String phone,HttpSession session){
-        // 从HttpSession对象中获取uid
-        Integer uid = getUidFromSession(session);
-
-        userService.changeInformationByUid(uid,username,email,gender,phone);
-        return new JsonResult<Void>(OK);
-    }
-
-    @RequestMapping("change_introduction_by_uid")
-    public JsonResult<Void> changeIntroductionByUid(String introduction,HttpSession session){
-        // 从HttpSession对象中获取uid
-        Integer uid = getUidFromSession(session);
-
-        userService.changeIntroductionByUid(uid,introduction);
-        return new JsonResult<Void>(OK);
-    }
-
     @RequestMapping("change_wallet_by_uid")
-    public JsonResult<Void> changeIntroductionByUid(Double wallet,HttpSession session){
+    public JsonResult<Void> changeWalletByUid(Double wallet,HttpSession session){
         // 从HttpSession对象中获取uid
         Integer uid = getUidFromSession(session);
 
         userService.updateWalletByUid(uid,wallet);
+        return new JsonResult<Void>(OK);
+    }
+
+    @RequestMapping("recharge_wallet_by_uid")
+    public JsonResult<Void> rechargeWalletByUid(Double wallet,HttpSession session){
+        // 从HttpSession对象中获取uid
+        Integer uid = getUidFromSession(session);
+
+        userService.rechargeWalletByUid(uid,wallet);
+        return new JsonResult<Void>(OK);
+    }
+
+    @RequestMapping("change_information_by_uid")
+    public JsonResult<Void> changeInformationByUid(String phone,String email,String gender,String introduction,HttpSession session){
+        // 从HttpSession对象中获取uid
+        Integer uid = getUidFromSession(session);
+        //判断性别
+        Integer genderNumber = 0;
+        if (gender == "男"){
+            genderNumber = 1;
+        }
+        System.out.println(gender);
+        userService.changeInformationByUid(uid,phone,email,genderNumber,introduction);
         return new JsonResult<Void>(OK);
     }
 }

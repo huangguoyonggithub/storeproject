@@ -70,24 +70,16 @@ public class UserMapperTests {
 
     @Test
     public void updatePasswordByEmail(){
-        userMapper.updatePasswordByEmail("25555555555qq.xom","123",new Date());
-    }
-
-    @Test
-    public void updateIntroductionByUid(){
-
-        userMapper.updateIntroductionByUid(8,"好小子！! !","管理者",new Date());
-    }
-
-    @Test
-    public void updateInformationByUid(){
-
-        userMapper.updateInformationByUid(8,"管理者","7758658@163.com",0,"10086110",
-                "管理者",new Date());
+        userMapper.updatePasswordByEmail("666666@qq.com","321",new Date());
     }
 
     @Test
     public void updateWalletByUid(){
-        userMapper.updateWalletByUid(8,1000000.00,"admin",new Date());
+        userMapper.updateWalletByUid(8,1000001.00,"admin",new Date());
+    }
+
+    @Test
+    public void updateInformationByUid(){
+        userMapper.updateInformationByUid(9,"0000000","666@qq.com",1,"牛仔","admin02",new Date());
     }
 }

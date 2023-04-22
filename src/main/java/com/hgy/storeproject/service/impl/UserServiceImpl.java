@@ -134,6 +134,8 @@ public class UserServiceImpl implements IUserService {
         user.setPhone(result.getPhone());
         user.setEmail(result.getEmail());
         user.setGender(result.getGender());
+        user.setIntroduction(result.getIntroduction());
+        user.setWallet(result.getWallet());
 
         // 返回新的User对象
         return user;
@@ -173,32 +175,6 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public void changeInformationByUid(Integer uid, String username, String email, Integer gender, String phone) {
-        User result = userMapper.findByUid(uid);
-        if (result == null){
-            throw new UserNotFoundException("用户数据不存在！");
-        }
-
-        Integer  rows = userMapper.updateInformationByUid(uid,username,email,gender,phone,result.getUsername(),new Date());
-        if (rows != 1){
-            throw  new UpdateException("更新时产生未知异常！");
-        }
-    }
-
-    @Override
-    public void changeIntroductionByUid(Integer uid, String introduction) {
-        User result = userMapper.findByUid(uid);
-        if (result == null){
-            throw new UserNotFoundException("用户数据不存在！");
-        }
-
-        Integer  rows = userMapper.updateIntroductionByUid(uid,introduction,result.getUsername(),new Date());
-        if (rows != 1){
-            throw  new UpdateException("更新时产生未知异常！");
-        }
-    }
-
-    @Override
     public void updateWalletByUid(Integer uid, Double wallet) {
         User result = userMapper.findByUid(uid);
         if (result == null){
@@ -206,6 +182,34 @@ public class UserServiceImpl implements IUserService {
         }
 
         Integer  rows = userMapper.updateWalletByUid(uid,result.getWallet() - wallet,result.getUsername(),new Date());
+        if (rows != 1){
+            throw  new UpdateException("更新时产生未知异常！");
+        }
+    }
+
+    @Override
+    public void rechargeWalletByUid(Integer uid, Double wallet) {
+        User result = userMapper.findByUid(uid);
+        if (result == null){
+            throw new UserNotFoundException("用户数据不存在！");
+        }
+
+        Integer  rows = userMapper.updateWalletByUid(uid,result.getWallet() + wallet,result.getUsername(),new Date());
+        if (rows != 1){
+            throw  new UpdateException("更新时产生未知异常！");
+        }
+    }
+
+
+    @Override
+    public void changeInformationByUid(Integer uid,String phone, String email, Integer gender, String introduction) {
+        User result = userMapper.findByUid(uid);
+        if (result == null){
+            throw new UserNotFoundException("用户数据不存在！");
+        }
+
+
+        Integer  rows = userMapper.updateInformationByUid(uid,phone,email,gender,introduction,result.getUsername(),new Date());
         if (rows != 1){
             throw  new UpdateException("更新时产生未知异常！");
         }
