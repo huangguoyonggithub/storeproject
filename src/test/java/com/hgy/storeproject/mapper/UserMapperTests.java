@@ -88,7 +88,6 @@ public class UserMapperTests {
 
     @Test
     public void updateWalletByUid(){
-
-        userMapper.updateWalletByUid(8,999.0,"管理者",new Date());
+        userMapper.updateWalletByUid(8,1000000.00,"admin",new Date());
     }
 }

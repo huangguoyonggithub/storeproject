@@ -11,6 +11,8 @@ public class User extends BaseEntity implements Serializable {
     private String phone;
     private String email;
     private Integer gender;
+    private String introduction;
+    private Double wallet;
 
     public Integer getUid() {
         return uid;
@@ -68,6 +70,22 @@ public class User extends BaseEntity implements Serializable {
         this.gender = gender;
     }
 
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+
+    public Double getWallet() {
+        return wallet;
+    }
+
+    public void setWallet(Double wallet) {
+        this.wallet = wallet;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -80,12 +98,14 @@ public class User extends BaseEntity implements Serializable {
                 Objects.equals(getSalt(), user.getSalt()) &&
                 Objects.equals(getPhone(), user.getPhone()) &&
                 Objects.equals(getEmail(), user.getEmail()) &&
-                Objects.equals(getGender(), user.getGender());
+                Objects.equals(getGender(), user.getGender()) &&
+                Objects.equals(getIntroduction(), user.getIntroduction()) &&
+                Objects.equals(getWallet(), user.getWallet());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), getUid(), getUsername(), getPassword(), getSalt(), getPhone(), getEmail(), getGender());
+        return Objects.hash(super.hashCode(), getUid(), getUsername(), getPassword(), getSalt(), getPhone(), getEmail(), getGender(), getIntroduction(), getWallet());
     }
 
     @Override
@@ -98,6 +118,8 @@ public class User extends BaseEntity implements Serializable {
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 ", gender=" + gender +
+                ", introduction='" + introduction + '\'' +
+                ", wallet=" + wallet +
                 '}';
     }
 }

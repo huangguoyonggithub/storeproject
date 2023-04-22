@@ -67,7 +67,7 @@
                     <div class="col-lg-12">
 						<div class="card">
 							<div class="card-body">
-								<div class="row" id="collect-all">
+								<div class="row" id="warehouse-all">
 									<div class="col-xl-3 col-lg-6 col-md-6">
 										<div class="prooduct-details-box">
 										  <div class="media">
@@ -300,8 +300,8 @@
 								</div>
 								<div class="ad-load-btn">
 									<a href="index.html" class="btn btn-primary squer-btn mt-2 mr-2">返回首页</a>
-									<button class="btn btn-primary squer-btn mt-2 mr-2">使用交易码</button>
-									<input name="" id="" type="text" placeholder="请输入交易码" class="ad-input">
+									<button class="btn btn-primary squer-btn mt-2 mr-2" id="use-status">使用交易码</button>
+									<input id="status" type="text" placeholder="请输入交易码" class="ad-input">
 								</div>
 							</div>
 						</div>
@@ -319,38 +319,38 @@
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/custom.js"></script>
 
+	<script type="text/javascript" src="../js/jquery-getUrlParam.js"></script>
+	<!--页面详情中使用(或其他product.html?gid=#{gid}方式转递数据)-->
+	<!--	可以通过../js/jquery-getUrlParam.js 获取	product.html?gid=#{gid} id的内容（let gid = $.getUrlParam("gid");）-->
+
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('#sidebar').load('sidebar.html'); //加载公共html部分
 			$('#header').load('header.html'); //加载公共html部分
-			showCollectAll();
+			showWarehouseAll();
 		});
 
-		function showCollectAll() {
-			$("#collect-all").empty();
+		function showWarehouseAll() {
+			$("#warehouse-all").empty();
 			$.ajax({
-				url: "/collects",
+				url: "/warehouses",
 				type: "GET",
 				dataType: "json",
 				success: function(json) {
 					let list = json.data;
 					for (let i = 0; i < list.length; i++) {
-
 						let html = '<div class="col-xl-3 col-lg-6 col-md-6">'
 								+ '<div class="prooduct-details-box">  '
 								+ '<div class="media">'
-								+ '<img src="#{image}" alt="" class="check-status" onclick="checkStatus(#{status})">'
+								+ '<img src="#{image}" alt="" class="check-status">'
 								+ '<span></span>'
 								+ '<div class="media-body ms-3">'
 								+ '<div class="product-name">'
 								+ '<h6><a href="javascript:;" title="">#{title}</a></h6>'
 								+ '</div>'
-								+ '<div class="price">'
-								+ '<div class="text-success">购入价格:$#{price}</div>'
-								+ '</div>'
 								+ '<div class="avaiabilty">'
-								+ '<button class="btn btn-primary squer-btn mt-2 mr-2" onclick="sellGoodItem(#{tid})">卖出</button>'
-								+ '<button class="btn btn-primary squer-btn mt-2 mr-2" onclick="rentGoodItem(#{tid})">送出</button>'
+								+ '<button class="btn btn-primary squer-btn mt-2 mr-2" onclick="sellGoodItem(#{wid})">卖出</button>'
+								+ '<button class="btn btn-primary squer-btn mt-2 mr-2" onclick="rentGoodItem(#{wid})">送出</button>'
 								+ '</div>'
 								+ '</div>'
 								+ '</div>'
@@ -359,13 +359,11 @@
 
 
 
-						html = html.replace(/#{tid}/g, list[i].tid);
+						html = html.replace(/#{wid}/g, list[i].wid);
 						html = html.replace(/#{image}/g, list[i].image);
 						html = html.replace(/#{title}/g, list[i].title);
-						html = html.replace(/#{price}/g, list[i].price);
-						html = html.replace(/#{status}/g, list[i].status);
 
-						$("#collect-all").append(html);
+						$("#warehouse-all").append(html);
 					}
 				},
 				error : function (xhr) {
@@ -373,6 +371,29 @@
 				}
 			});
 		}
+
+		$("#use-status").click(function () {
+			let status = $("#status").val();
+			console.log(status)
+			$.ajax({
+				url: "/warehouses/" + status + "/use_status",
+				type: "POST",
+				dataType: "JSON",
+				success: function(json) {
+					if (json.state == 200) {
+						alert("获取成功！")
+						showWarehouseAll();
+					} else {
+						alert("获取失败！" + json.message);
+					}
+				},
+				error: function(xhr) {
+					alert("您的登录信息已经过期，请重新登录！HTTP响应码：" + xhr.status);
+					location.href = "login.html";
+				}
+			});
+		});
+
 
 		function sellGoodItem(tid) {
 			// $.ajax({

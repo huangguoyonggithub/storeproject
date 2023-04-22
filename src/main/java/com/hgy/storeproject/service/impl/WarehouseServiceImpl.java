@@ -67,6 +67,9 @@ public class WarehouseServiceImpl implements IWarehouseService {
             throw new InsertException("添加个人仓库时出现未知错误，请联系系统管理员");
         }
 
+        //删除加入仓库的已购商品数据
+        orderMapper.deleteOrderItemByMid(orderItem.getMid());
+
         return warehouse;
     }
 

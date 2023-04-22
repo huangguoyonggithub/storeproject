@@ -116,7 +116,7 @@ public class UserController extends BaseController{
         // 从HttpSession对象中获取uid
         Integer uid = getUidFromSession(session);
 
-        userService.changeWalletByUid(uid,wallet);
+        userService.updateWalletByUid(uid,wallet);
         return new JsonResult<Void>(OK);
     }
 }

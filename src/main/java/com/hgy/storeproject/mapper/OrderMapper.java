@@ -3,6 +3,7 @@ package com.hgy.storeproject.mapper;
 import com.hgy.storeproject.entity.Order;
 import com.hgy.storeproject.entity.OrderItem;
 
+import java.util.Date;
 import java.util.List;
 
 /**订单的持久层接口*/
@@ -51,4 +52,11 @@ public interface OrderMapper {
      * @return 已购商品的某商品数据或者null
      */
     OrderItem findOrderItemByMid(Integer mid);
+
+    /**
+     * 根据mid删除已购商品数据
+     * @param mid 已购商品id
+     * @return 受影响的行数
+     */
+    Integer deleteOrderItemByMid(Integer mid);
 }

@@ -88,7 +88,7 @@ public interface UserMapper {
                                 String modifiedUser, Date modifiedTime);
 
     /**
-     *根据用户的uid来修改用户的介绍
+     *根据用户的uid来修改用户的余额（）
      * @param uid 用户id
      * @param wallet 用户充值的额度
      * @param modifiedUser 修改的执行者

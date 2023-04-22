@@ -19,8 +19,8 @@ public class WarehouseController extends BaseController{
     @Autowired
     private IWarehouseService warehouseService;
 
-    @RequestMapping("create")
-    public JsonResult<Warehouse> createWarehouse(Integer mid, HttpSession session) {
+    @RequestMapping("{mid}/create")
+    public JsonResult<Warehouse> createWarehouse(@PathVariable("mid")Integer mid, HttpSession session) {
         // 从Session中取出uid和username
         Integer uid = getUidFromSession(session);
         // 调用业务对象执行业务

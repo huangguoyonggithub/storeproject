@@ -199,13 +199,13 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public void changeWalletByUid(Integer uid, Double wallet) {
+    public void updateWalletByUid(Integer uid, Double wallet) {
         User result = userMapper.findByUid(uid);
         if (result == null){
             throw new UserNotFoundException("用户数据不存在！");
         }
 
-        Integer  rows = userMapper.updateWalletByUid(uid,wallet,result.getUsername(),new Date());
+        Integer  rows = userMapper.updateWalletByUid(uid,result.getWallet() - wallet,result.getUsername(),new Date());
         if (rows != 1){
             throw  new UpdateException("更新时产生未知异常！");
         }

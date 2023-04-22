@@ -84,7 +84,6 @@
                             <div class="card-body pb-4">
                                 <div class="chart-holder">
                                     <div class="table-responsive">
-                                        <form action="orderConfirm.html" role="form" id="btn-payment-form">
                                         <table class="table table-styled mb-0" id="table">
                                             <thead>
                                                 <tr>
@@ -96,7 +95,7 @@
                                                     <th>发货</th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="cart-list">
+                                            <tbody id="order-item-list">
                                                 <tr>
                                                     <td>Dining Chair</td>
                                                     <td>
@@ -107,7 +106,7 @@
                                                     <td>Dining Chair</td>
                                                     <td>$86</td>
                                                     <td><a href="index.html" class="btn btn-success squer-btn mt-2 mr-2">查看订单</a></td>
-                                                    <td><a href="index.html" class="btn btn-success squer-btn mt-2 mr-2">立即发货</a></td>
+                                                    <td><a href="" class="btn btn-success squer-btn mt-2 mr-2">立即发货</a></td>
                                                 </tr>
 												<tr>
                                                     <td>Dining Chair</td>
@@ -119,7 +118,7 @@
                                                     <td>Dining Chair</td>
                                                     <td>$86</td>
                                                     <td><a href="index.html" class="btn btn-success squer-btn mt-2 mr-2">查看订单</a></td>
-                                                    <td><a href="index.html" class="btn btn-success squer-btn mt-2 mr-2">立即发货</a></td>
+                                                    <td><a href="" class="btn btn-success squer-btn mt-2 mr-2">立即发货</a></td>
                                                 </tr>
 												<tr>
                                                     <td>Dining Chair</td>
@@ -131,7 +130,7 @@
                                                     <td>Dining Chair</td>
                                                     <td>$86</td>
                                                     <td><a href="index.html" class="btn btn-success squer-btn mt-2 mr-2">查看订单</a></td>
-                                                    <td><a href="index.html" class="btn btn-success squer-btn mt-2 mr-2">立即发货</a></td>
+                                                    <td><a href="" class="btn btn-success squer-btn mt-2 mr-2">立即发货</a></td>
                                                 </tr>
                                             </tbody>
                                             <tfoot>
@@ -145,7 +144,6 @@
                                                 </tr>
                                             </tfoot>
                                         </table>
-                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -172,7 +170,7 @@
         })
 
         function showOrderItems() {
-            $("#cart-list").empty();
+            $("#order-item-list").empty();
             $.ajax({
                 url: "/orders/order_item",
                 type: "GET",
@@ -191,7 +189,7 @@
                                 + '<td>#{title}</td>'
                                 + '<td>￥<b>#{price}</b></td>'
                                 + '<td><a href="orderInfo.html?oid=#{oid}" class="btn btn-success squer-btn mt-2 mr-2">查看订单</a></td>'
-                                + '<td><a href="warehouse.html?mid=#{mid}" class="btn btn-success squer-btn mt-2 mr-2">立即发货</a></td>'
+                                + '<td><a href=""  onclick="addToWarehouse(#{mid})" class="btn btn-success squer-btn mt-2 mr-2">发送到仓库</a></td>'
                                 + '</tr>';
 
                             tr = tr.replace(/#{mid}/g, list[i].mid);
@@ -200,12 +198,32 @@
                             tr = tr.replace(/#{title}/g, list[i].title);
                             tr = tr.replace(/#{price}/g, list[i].price);
 
-                            $("#cart-list").append(tr);
+                            $("#order-item-list").append(tr);
                         }
                     }
                 },
                 error : function (xhr) {
-                    alert("购物车列表数据加载产生未知异常，" + xhr.status);
+                    alert("已购商品列表数据加载产生未知异常，" + xhr.status);
+                }
+            });
+        }
+
+        function addToWarehouse(mid) {
+            $.ajax({
+                url: "/warehouses/" + mid + "/create",
+                type: "POST",
+                dataType: "JSON",
+                success: function(json) {
+                    if (json.state == 200) {
+                        alert("增加到仓库成功！");
+                        showOrderItems();
+                    } else {
+                        alert("增加到仓库失败！" + json.message);
+                    }
+                },
+                error: function(xhr) {
+                    alert("您的登录信息已经过期，请重新登录！HTTP响应码：" + xhr.status);
+                    location.href = "login.html";
                 }
             });
         }

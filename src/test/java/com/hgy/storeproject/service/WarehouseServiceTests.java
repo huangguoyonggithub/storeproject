@@ -20,7 +20,7 @@ public class WarehouseServiceTests {
 
     @Test
     public void createWarehouse(){
-        Warehouse warehouse = warehouseService.createWarehouse(9,4);
+        Warehouse warehouse = warehouseService.createWarehouse(9,9);
         System.out.println(warehouse);
     }
 

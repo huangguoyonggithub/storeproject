@@ -65,9 +65,9 @@ public interface IUserService {
     void changeIntroductionByUid(Integer uid,String introduction);
 
     /**
-     * 更新用户介绍
+     * 余额充值
      * @param uid 用户uid
-     * @param wallet 用户介绍
+     * @param wallet 受影响行数
      */
-    void changeWalletByUid(Integer uid,Double wallet);
+    void updateWalletByUid(Integer uid,Double wallet);
 }

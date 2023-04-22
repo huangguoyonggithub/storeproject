@@ -7,10 +7,7 @@ import com.hgy.storeproject.service.ICartService;
 import com.hgy.storeproject.service.IGoodService;
 import com.hgy.storeproject.service.IOrderService;
 import com.hgy.storeproject.service.IUserService;
-import com.hgy.storeproject.service.ex.AccessDeniedException;
-import com.hgy.storeproject.service.ex.DeleteException;
-import com.hgy.storeproject.service.ex.InsertException;
-import com.hgy.storeproject.service.ex.UserNotFoundException;
+import com.hgy.storeproject.service.ex.*;
 import com.hgy.storeproject.vo.CartVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +28,11 @@ public class OrderServiceImpl implements IOrderService {
 
     @Override
     public Order createOrder(Integer[] cids, Integer uid, String username) {
+        User user = userService.getByUid(uid);
+        if (user == null){
+            throw new UserNotFoundException("该用户数据不存在，请重新登录！");
+        }
+
         // 创建当前时间对象
         Date now = new Date();
 
@@ -42,6 +44,9 @@ public class OrderServiceImpl implements IOrderService {
         for (CartVO cart : carts) {
             totalPrice += cart.getPrice();
         }
+
+        //修改用户余额
+        userService.updateWalletByUid(uid,totalPrice);
 
         // 创建订单数据对象
         Order order = new Order();

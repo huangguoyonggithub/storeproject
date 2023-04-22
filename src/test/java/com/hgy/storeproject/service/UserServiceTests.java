@@ -94,6 +94,6 @@ public class UserServiceTests {
 
     @Test
     public void changeWallet(){
-        userService.changeWalletByUid(8,10086.9);
+        userService.updateWalletByUid(8,10086.9);
     }
 }

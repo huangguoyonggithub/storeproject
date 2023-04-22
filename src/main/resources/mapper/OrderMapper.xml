@@ -70,4 +70,8 @@
     <select id="findOrderItemByMid" resultMap="OrderItemEntityMap">
         SELECT * FROM order_item WHERE mid = #{mid}
     </select>
+
+    <delete id="deleteOrderItemByMid">
+        DELETE FROM order_item WHERE mid = #{mid}
+    </delete>
 </mapper>
