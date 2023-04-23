@@ -3,10 +3,8 @@ package com.hgy.storeproject.service.impl;
 import com.hgy.storeproject.entity.*;
 import com.hgy.storeproject.mapper.CartMapper;
 import com.hgy.storeproject.mapper.OrderMapper;
-import com.hgy.storeproject.service.ICartService;
-import com.hgy.storeproject.service.IGoodService;
-import com.hgy.storeproject.service.IOrderService;
-import com.hgy.storeproject.service.IUserService;
+import com.hgy.storeproject.mapper.SellMapper;
+import com.hgy.storeproject.service.*;
 import com.hgy.storeproject.service.ex.*;
 import com.hgy.storeproject.vo.CartVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +20,13 @@ public class OrderServiceImpl implements IOrderService {
     @Autowired
     private OrderMapper orderMapper;
     @Autowired
+    private SellMapper sellMapper;
+    @Autowired
     private ICartService cartService;
     @Autowired
     private IUserService userService;
+    @Autowired
+    private IGoodService goodService;
 
     @Override
     public Order createOrder(Integer[] cids, Integer uid, String username) {
@@ -95,7 +97,12 @@ public class OrderServiceImpl implements IOrderService {
             //删除已完成购买的购物车数据
             Integer rows3 = cartService.deleteCartVOByCid(cart.getCid(),cart.getUid());
             if (rows3 != 1){
-                throw new DeleteException("删除购物车数据时产生未知错误，请联系系统管理员！");
+                throw new DeleteException("删除已完成购买的购物车数据时产生未知错误，请联系系统管理员！");
+            }
+            //删除已完成购买的商品库数据
+            Integer rows4 = goodService.deleteGoodsByGid(cart.getGid());
+            if (rows4 != 1){
+                throw new DeleteException("删除已完成购买的商品库数据时产生未知错误，请联系系统管理员！");
             }
         }
 

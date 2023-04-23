@@ -57,4 +57,14 @@ public class GoodServiceTests {
             System.out.println(item);
         }
     }
+
+    @Test
+    public void deleteGoodsByGid() {
+        goodService.deleteGoodsByGid(1132);
+    }
+
+    @Test
+    public void sellEquipment() {
+        goodService.sellEquipment(8,5,1,"匕首",1500.0);
+    }
 }

@@ -42,8 +42,24 @@ public interface IGoodService {
 
     /**
      * 根据gid查询商品数据
-     * @param gid 商品id
+     * @param gid 商品idAS
      * @return 相关的数据，或者NULL
      */
     Good selectGoodById(Integer gid);
+
+    /**
+     * 根据gid删除goods装备库里的数据（也就是下架商品）
+     * @param gid 商品id
+     */
+    Integer deleteGoodsByGid(Integer gid);
+
+    /**
+     * 出售装备
+     * @param uid 用户id
+     * @param wid 装备id
+     * @param categoryId 装备分类号
+     * @param goodType 装备类型
+     * @param price 装备价格
+     */
+    void sellEquipment(Integer uid,Integer wid,Integer categoryId,String goodType,Double price);
  }

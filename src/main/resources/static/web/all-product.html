@@ -752,8 +752,7 @@
                             + '</div>'
                             + '<div class="product-text-rs">'
                             + '<h4 class="show-title" style="height: 24px;overflow: auto;">#{title}</h4>'
-                            + '<h4 style="color: #00acee">库存：#{num}</h4>'
-                            + '<h4 style="color: #00acee"><span>¥#{price} </span>¥#{prices}</h4>'
+                            + '<h4 style="color: #00acee">价格：<span>¥#{prices} </span>¥#{price}</h4>'
                             + '</div>'
                             + '</div>'
                             + '</li>';
@@ -764,9 +763,8 @@
                         html = html.replace(/#{goodType}/g, list[i].goodType);
                         html = html.replace(/#{title}/g, list[i].title);
                         html = html.replace(/#{num}/g, list[i].num);
-                        html = html.replace(/#{price}/g, list[i].price);
 						html = html.replace(/#{prices}/g, list[i].prices);
-
+                        html = html.replace(/#{price}/g, list[i].price);
 
                         $("#good-list").append(html);
 					}
@@ -903,8 +901,7 @@
 								+ '</div>'
 								+ '<div class="product-text-rs">'
 								+ '<h4 class="show-title" style="height: 24px;overflow: auto;">#{title}</h4>'
-								+ '<h4 style="color: #00acee">库存：#{num}</h4>'
-								+ '<h4 style="color: #00acee"><span>¥#{price} </span>¥#{prices}</h4>'
+								+ '<h4 style="color: #00acee"><span>¥#{prices} </span>¥#{price}</h4>'
 								+ '</div>'
 								+ '</div>'
 								+ '</li>';

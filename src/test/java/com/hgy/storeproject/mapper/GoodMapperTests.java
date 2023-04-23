@@ -1,5 +1,6 @@
 package com.hgy.storeproject.mapper;
 
+import com.hgy.storeproject.entity.Cart;
 import com.hgy.storeproject.entity.Good;
 import com.hgy.storeproject.entity.User;
 import org.junit.Test;
@@ -29,7 +30,7 @@ public class GoodMapperTests {
 
     @Test
     public void select() {
-        List<Good> list = goodMapper.selectGoods("爪子");
+        List<Good> list = goodMapper.selectGoods("牛啊");
         System.out.println("count=" + list.size());
         for (Good item : list) {
             System.out.println(item);
@@ -51,5 +52,16 @@ public class GoodMapperTests {
         for (Good item : list) {
             System.out.println(item);
         }
+    }
+
+    @Test
+    public void insert() {
+        Good good = new Good();
+        good.setCategoryId(1);
+        good.setGoodType("匕首");
+        good.setTitle("牛啊");
+        good.setPrice(100.0);
+        good.setPrices(200.0);
+        System.out.println(goodMapper.insertGood(good));
     }
 }

@@ -41,4 +41,12 @@
         modified_time = #{modifiedTime}
         WHERE status = #{status}
     </update>
+
+    <select id="findWarehouseByWid" resultMap="WarehouseEntityMap">
+        SELECT * FROM warehouse WHERE wid = #{wid}
+    </select>
+
+    <delete id="deleteWarehouseByWid">
+        DELETE FROM warehouse WHERE wid = #{wid}
+    </delete>
 </mapper>

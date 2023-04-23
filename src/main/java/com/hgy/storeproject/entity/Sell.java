@@ -3,7 +3,9 @@ package com.hgy.storeproject.entity;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Good extends BaseEntity implements Serializable {
+public class Sell extends BaseEntity implements Serializable {
+    private Integer sid;
+    private Integer uid;
     private Integer gid;
     private Integer categoryId;
     private String goodType;
@@ -12,6 +14,22 @@ public class Good extends BaseEntity implements Serializable {
     private double prices;
     private String image;
     private String status;
+
+    public Integer getSid() {
+        return sid;
+    }
+
+    public void setSid(Integer sid) {
+        this.sid = sid;
+    }
+
+    public Integer getUid() {
+        return uid;
+    }
+
+    public void setUid(Integer uid) {
+        this.uid = uid;
+    }
 
     public Integer getGid() {
         return gid;
@@ -80,28 +98,32 @@ public class Good extends BaseEntity implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Good)) return false;
+        if (!(o instanceof Sell)) return false;
         if (!super.equals(o)) return false;
-        Good good = (Good) o;
-        return Double.compare(good.getPrice(), getPrice()) == 0 &&
-                Double.compare(good.getPrices(), getPrices()) == 0 &&
-                Objects.equals(getGid(), good.getGid()) &&
-                Objects.equals(getCategoryId(), good.getCategoryId()) &&
-                Objects.equals(getGoodType(), good.getGoodType()) &&
-                Objects.equals(getTitle(), good.getTitle()) &&
-                Objects.equals(getImage(), good.getImage()) &&
-                Objects.equals(getStatus(), good.getStatus());
+        Sell sell = (Sell) o;
+        return Double.compare(sell.getPrice(), getPrice()) == 0 &&
+                Double.compare(sell.getPrices(), getPrices()) == 0 &&
+                Objects.equals(getSid(), sell.getSid()) &&
+                Objects.equals(getUid(), sell.getUid()) &&
+                Objects.equals(getGid(), sell.getGid()) &&
+                Objects.equals(getCategoryId(), sell.getCategoryId()) &&
+                Objects.equals(getGoodType(), sell.getGoodType()) &&
+                Objects.equals(getTitle(), sell.getTitle()) &&
+                Objects.equals(getImage(), sell.getImage()) &&
+                Objects.equals(getStatus(), sell.getStatus());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), getGid(), getCategoryId(), getGoodType(), getTitle(), getPrice(), getPrices(), getImage(), getStatus());
+        return Objects.hash(super.hashCode(), getSid(), getUid(), getGid(), getCategoryId(), getGoodType(), getTitle(), getPrice(), getPrices(), getImage(), getStatus());
     }
 
     @Override
     public String toString() {
-        return "Good{" +
-                "gid=" + gid +
+        return "Sell{" +
+                "sid=" + sid +
+                ", uid=" + uid +
+                ", gid=" + gid +
                 ", categoryId=" + categoryId +
                 ", goodType='" + goodType + '\'' +
                 ", title='" + title + '\'' +

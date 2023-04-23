@@ -25,6 +25,10 @@
 	<link rel="stylesheet" id="theme-change" type="text/css" href="">
 	<!--  icon  -->
 	<link rel="stylesheet" type="text/css" href="../css/icon.css">
+
+	<style type="text/css">
+
+	</style>
 </head>
 
 
@@ -327,6 +331,7 @@
 		$(document).ready(function(){
 			$('#sidebar').load('sidebar.html'); //加载公共html部分
 			$('#header').load('header.html'); //加载公共html部分
+
 			showWarehouseAll();
 		});
 
@@ -348,9 +353,12 @@
 								+ '<div class="product-name">'
 								+ '<h6><a href="javascript:;" title="">#{title}</a></h6>'
 								+ '</div>'
+								+ '<div class="price">'
+								+ '<a>交易码:</a>'
+								+ '<div class="text-success">#{status}</div>'
+								+ '</div>'
 								+ '<div class="avaiabilty">'
-								+ '<button class="btn btn-primary squer-btn mt-2 mr-2" onclick="sellGoodItem(#{wid})">卖出</button>'
-								+ '<button class="btn btn-primary squer-btn mt-2 mr-2" onclick="rentGoodItem(#{wid})">送出</button>'
+								+ '<button class="btn btn-primary squer-btn mt-2 mr-2" onclick="sellGoodItem(#{wid})">出售</button>'
 								+ '</div>'
 								+ '</div>'
 								+ '</div>'
@@ -362,7 +370,7 @@
 						html = html.replace(/#{wid}/g, list[i].wid);
 						html = html.replace(/#{image}/g, list[i].image);
 						html = html.replace(/#{title}/g, list[i].title);
-
+						html = html.replace(/#{status}/g, list[i].status);
 						$("#warehouse-all").append(html);
 					}
 				},
@@ -394,6 +402,9 @@
 			});
 		});
 
+		function hiddenStatus() {
+			console.log($(this).next(".text-success"))
+		}
 
 		function sellGoodItem(tid) {
 			// $.ajax({
@@ -412,46 +423,6 @@
 			// 		location.href = "login.html";
 			// 	}
 			// });
-		}
-
-		function rentGoodItem(tid) {
-			// $.ajax({
-			// 	url: "/collects/" + tid + "/delete_collect",
-			// 	type: "POST",
-			// 	dataType: "JSON",
-			// 	success: function(json) {
-			// 		if (json.state == 200) {
-			// 			$(this).parents(".col-xl-3 col-lg-6 col-md-6").remove();
-			// 		} else {
-			// 			alert("删除收藏失败！" + json.message);
-			// 		}
-			// 	},
-			// 	error: function(xhr) {
-			// 		alert("您的登录信息已经过期，请重新登录！HTTP响应码：" + xhr.status);
-			// 		location.href = "login.html";
-			// 	}
-			// });
-		}
-
-		function checkStatus(status) {
-			// console.log("--->" + this);
-			// console.log("+++" + status);
-			$.ajax({
-				url: "/warehouse/" + status + "/check_status",
-				type: "POST",
-				dataType: "JSON",
-				success: function(json) {
-					if (json.state == 200) {
-						alert("交易码：" + json.data.status)
-					} else {
-						alert("获取交易码失败！" + json.message);
-					}
-				},
-				error: function(xhr) {
-					alert("您的登录信息已经过期，请重新登录！HTTP响应码：" + xhr.status);
-					location.href = "login.html";
-				}
-			});
 		}
 	</script>
 </body>

@@ -33,4 +33,18 @@ public interface WarehouseMapper {
      * @return 受影响的行数
      */
     Integer updateWarehouseGoodsUser(Integer uid, String status,String modifiedUser, Date modifiedTime);
+
+    /**
+     * 查询仓库某个装备数据
+     * @param wid 装备id
+     * @return 该装备数据或者null
+     */
+    Warehouse findWarehouseByWid(Integer wid);
+
+    /**
+     * 根据wid删除商品
+     * @param wid 装备id
+     * @return 受影响的行数
+     */
+    Integer deleteWarehouseByWid(Integer wid);
 }

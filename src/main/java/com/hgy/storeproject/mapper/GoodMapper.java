@@ -1,5 +1,6 @@
 package com.hgy.storeproject.mapper;
 
+import com.hgy.storeproject.entity.Cart;
 import com.hgy.storeproject.entity.Good;
 import com.hgy.storeproject.entity.User;
 
@@ -36,4 +37,18 @@ public interface GoodMapper {
      * @return 如果找到返回对象，反之返回null
      */
     Good selectGoodByID(Integer gid);
+
+    /**
+     * 根据gid删除装备库数据
+     * @param gid 装备id
+     * @return 受影响的行数
+     */
+    Integer deleteGoodsByGid(Integer gid);
+
+    /**
+     * 插入商品
+     * @param good 商品
+     * @return 受影响的行数
+     */
+    Integer insertGood(Good good);
 }
