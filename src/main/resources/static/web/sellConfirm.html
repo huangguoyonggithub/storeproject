@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="zxx">
+    <!--<![endif]-->
+    <!-- Begin Head -->
+
+    <head>
+        <title>CSGO装备商城</title>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta name="author" content="">
+        <meta name="MobileOptimized" content="320">
+        <!--导入核心文件-->
+        <script src="../bootstrap3/js/holder.js"></script>
+        <link href="../bootstrap3/css/bootstrap.css" rel="stylesheet" type="text/css">
+        <script src="../bootstrap3/jquery-1.9.1.min.js"></script>
+        <!--Start Style -->
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../css/auth.css">
+    </head>
+
+    <body>
+        <div class="ad-auth-wrapper">
+            <div class="ad-auth-box">
+                <div class="row align-items-center">
+                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="ad-auth-img" id="goods-image">
+                            <img src="../picture/k.png" alt="goods">
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="ad-auth-content">
+                            <form id="form-sell-goods">
+                                <a href="index.html" class="ad-auth-logo">
+                                    <img src="../picture/csgo.png" alt="csgo">
+                                </a>
+                                <h2><span class="primary" style="color: #ac2925">出售商品</span></h2>
+                                <h5>商品名称:<span class="primary" id="goods-name" style="color: #00acee"></span></h5>
+                                <div class="ad-auth-form">
+                                    <div class="ad-auth-feilds mb-30">
+                                        <input name="wid" type="number" placeholder="请输入商品id" class="ad-input" id="wid" style="display: none">
+                                        <input name="categoryId" type="number" placeholder="请输入分类号" class="ad-input" id="category-id">
+                                    </div>
+                                    <div class="ad-auth-feilds mb-30">
+                                        <input name="goodType" type="text" placeholder="请输入类型" class="ad-input" id="goods-type">
+                                    </div>
+                                    <div class="ad-auth-feilds">
+                                        <input name="price" type="number" placeholder="请输入价格" class="ad-input" id="price">
+                                    </div>
+                                </div>
+
+                                <div class="ad-auth-btn">
+                                    <input id="btn-sell" class="ad-btn ad-login-member" type="button" value="确认出售" />
+                                </div>
+                                <p class="ad-register-text"><a href="warehouse.html">返回个人仓库</a></p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="ad-notifications ad-error">
+                    <p><span>Duhh!</span>Something Went Wrong</p>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $.ajax({
+                    url: "/warehouses/get_my_goods",
+                    type: "GET",
+                    data: location.search.substr(1), //地址栏上的数据，1代表？后的数据，0代表？前的
+                    dataType: "JSON",
+                    success: function (json) {
+                        if (json.state == 200) {
+                            // console.log("title=" + json.data.title);
+                            //html可以直接放数据，还可以加标签
+
+                            $("#goods-image img").attr("src", json.data.image);
+                            $("#goods-name").html(json.data.title);
+                            $("#wid").val(json.data.wid);
+                            $("#category-id").val(json.data.categoryId);
+                            $("#goods-type").val(json.data.goodsType);
+                            $("#price").val(json.data.price);
+                        } else {
+                            alert("获取商品信息失败！" + json.message);
+                        }
+                    }
+                });
+            })
+
+            $("#btn-sell").click(function () {
+                $.ajax({
+                    url : "/goods/sell",
+                    type : "POST",
+                    data : $("#form-sell-goods").serialize(),
+                    dataType : "json",
+                    success : function (json) {
+                        if (json.state == 200){
+                            alert("出售成功");
+                            location.href = "warehouse.html";
+                        }else {
+                            alert("出售失败");
+                        }
+                    },
+                    error : function (xhr) {
+                        alert("出售时产生未知的异常:"+xhr.status);
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>

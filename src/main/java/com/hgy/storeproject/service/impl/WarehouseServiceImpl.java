@@ -84,6 +84,17 @@ public class WarehouseServiceImpl implements IWarehouseService {
     }
 
     @Override
+    public Warehouse findWarehouseByWid(Integer uid, Integer wid) {
+        User user = userService.getByUid(uid);
+        if (user == null){
+            throw new UserNotFoundException("没有用户登录异常");
+        }
+
+        return warehouseMapper.findWarehouseByWid(wid);
+    }
+
+
+    @Override
     public Integer updateWarehouseGoodsUser(Integer uid, String status) {
         User user = userService.getByUid(uid);
         if (user == null){

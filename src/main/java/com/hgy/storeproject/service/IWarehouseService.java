@@ -21,6 +21,14 @@ public interface IWarehouseService {
     List<Warehouse> findWarehouseByUid(Integer uid);
 
     /**
+     * 根据wid查找某个商品数据
+     * @param uid 用户id
+     * @param wid 商品id
+     * @return 该仓库的某个商品数据或者null
+     */
+    Warehouse findWarehouseByWid(Integer uid,Integer wid);
+
+    /**
      * 根据交易码获取装备
      * @param uid 任意用户id
      * @param status 交易码 （交易码谁都可以用）

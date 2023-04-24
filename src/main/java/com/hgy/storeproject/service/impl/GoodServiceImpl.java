@@ -98,6 +98,7 @@ public class GoodServiceImpl implements IGoodService {
         return  goodMapper.deleteGoodsByGid(gid);
     }
 
+    //卖出商品
     @Override
     public void sellEquipment(Integer uid, Integer wid, Integer categoryId, String goodType,Double price) {
         User user = userService.getByUid(uid);

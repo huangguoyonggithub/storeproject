@@ -358,7 +358,7 @@
 								+ '<div class="text-success">#{status}</div>'
 								+ '</div>'
 								+ '<div class="avaiabilty">'
-								+ '<button class="btn btn-primary squer-btn mt-2 mr-2" onclick="sellGoodItem(#{wid})">出售</button>'
+								+ '<a class="btn btn-primary squer-btn mt-2 mr-2" href="sellConfirm.html?wid=#{wid}">出售</a>'
 								+ '</div>'
 								+ '</div>'
 								+ '</div>'
@@ -401,29 +401,6 @@
 				}
 			});
 		});
-
-		function hiddenStatus() {
-			console.log($(this).next(".text-success"))
-		}
-
-		function sellGoodItem(tid) {
-			// $.ajax({
-			// 	url: "/collects/" + tid + "/delete_collect",
-			// 	type: "POST",
-			// 	dataType: "JSON",
-			// 	success: function(json) {
-			// 		if (json.state == 200) {
-			// 			$(this).parents(".col-xl-3 col-lg-6 col-md-6").remove();
-			// 		} else {
-			// 			alert("删除收藏失败！" + json.message);
-			// 		}
-			// 	},
-			// 	error: function(xhr) {
-			// 		alert("您的登录信息已经过期，请重新登录！HTTP响应码：" + xhr.status);
-			// 		location.href = "login.html";
-			// 	}
-			// });
-		}
 	</script>
 </body>
 

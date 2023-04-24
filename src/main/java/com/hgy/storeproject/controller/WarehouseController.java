@@ -15,16 +15,16 @@ import java.util.List;
 
 @RestController // @Controller + @ResponseBody //表示此方法的响应结果以json格式进行数据的响应给到前端
 @RequestMapping("warehouses")
-public class WarehouseController extends BaseController{
+public class WarehouseController extends BaseController {
     @Autowired
     private IWarehouseService warehouseService;
 
     @RequestMapping("{mid}/create")
-    public JsonResult<Warehouse> createWarehouse(@PathVariable("mid")Integer mid, HttpSession session) {
+    public JsonResult<Warehouse> createWarehouse(@PathVariable("mid") Integer mid, HttpSession session) {
         // 从Session中取出uid和username
         Integer uid = getUidFromSession(session);
         // 调用业务对象执行业务
-        Warehouse data = warehouseService.createWarehouse(uid,mid);
+        Warehouse data = warehouseService.createWarehouse(uid, mid);
         // 返回成功与数据
         return new JsonResult<Warehouse>(OK, data);
     }
@@ -40,13 +40,24 @@ public class WarehouseController extends BaseController{
     }
 
     @RequestMapping("{status}/use_status")
-    public JsonResult<Void> findOrderItemByOid(@PathVariable("status")String status,HttpSession session) {
+    public JsonResult<Void> findOrderItemByOid(@PathVariable("status") String status, HttpSession session) {
         // 从Session中取出uid和username
         Integer uid = getUidFromSession(session);
         String username = getUsernameFromSession(session);
         // 调用业务对象执行业务
-        warehouseService.updateWarehouseGoodsUser(uid,status);
+        warehouseService.updateWarehouseGoodsUser(uid, status);
         // 返回成功与数据
         return new JsonResult<Void>(OK);
+    }
+
+    @RequestMapping("get_my_goods")
+    public JsonResult<Warehouse> getMyGoods(Integer wid, HttpSession session) {
+        // 从Session中取出uid和username
+        Integer uid = getUidFromSession(session);
+        // 调用业务对象执行业务
+        Warehouse data = warehouseService.findWarehouseByWid(uid, wid);
+        // 返回成功与数据
+        return new JsonResult<Warehouse>(OK, data);
+
     }
 }

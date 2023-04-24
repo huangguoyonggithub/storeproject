@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
 import javax.websocket.server.PathParam;
 import java.util.List;
 
@@ -54,5 +55,15 @@ public class GoodController extends BaseController{
         Good data = goodService.selectGoodById(gid);
         // 返回成功和数据
         return new JsonResult<Good>(OK, data);
+    }
+
+    @RequestMapping("sell")
+    public JsonResult<Void> sellEquipment(Integer wid, Integer categoryId, String goodType,Double price, HttpSession session) {
+        // 调用业务对象执行获取数据
+        Integer uid = getUidFromSession(session);
+        goodService.sellEquipment(uid,wid,categoryId,goodType,price);
+        System.out.println("哈哈哈哈哈哈哈哈哈哈哈哈");
+        // 返回成功和数据
+        return new JsonResult<Void>(OK);
     }
 }
