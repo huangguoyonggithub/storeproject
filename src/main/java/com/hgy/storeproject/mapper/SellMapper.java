@@ -17,5 +17,4 @@ public interface SellMapper {
     List<Sell> selectAllSell(Integer uid);
 
     Sell selectSellByGid(Integer gid);
-
 }

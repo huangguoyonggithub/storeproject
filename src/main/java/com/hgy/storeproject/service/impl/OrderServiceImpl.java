@@ -47,6 +47,10 @@ public class OrderServiceImpl implements IOrderService {
             totalPrice += cart.getPrice();
         }
 
+        if (user.getWallet() < totalPrice){
+            throw new UserWalletNotEnoughException("用户余额不足，请进行充值！");
+        }
+
         //修改用户余额
         userService.updateWalletByUid(uid,totalPrice);
 

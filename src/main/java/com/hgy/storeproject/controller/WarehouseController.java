@@ -29,6 +29,16 @@ public class WarehouseController extends BaseController {
         return new JsonResult<Warehouse>(OK, data);
     }
 
+    @RequestMapping("{gid}/translate")
+    public JsonResult<Warehouse> translateWarehouse(@PathVariable("gid") Integer gid, HttpSession session) {
+        // 从Session中取出uid和username
+        Integer uid = getUidFromSession(session);
+        // 调用业务对象执行业务
+        Warehouse data = warehouseService.translateWarehouse(uid,gid);
+        // 返回成功与数据
+        return new JsonResult<Warehouse>(OK, data);
+    }
+
     @RequestMapping({"", "/"})
     public JsonResult<List<Warehouse>> findWarehouses(HttpSession session) {
         // 从Session中取出uid和username

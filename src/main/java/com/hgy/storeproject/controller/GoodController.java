@@ -62,7 +62,6 @@ public class GoodController extends BaseController{
         // 调用业务对象执行获取数据
         Integer uid = getUidFromSession(session);
         goodService.sellEquipment(uid,wid,categoryId,goodType,price);
-        System.out.println("哈哈哈哈哈哈哈哈哈哈哈哈");
         // 返回成功和数据
         return new JsonResult<Void>(OK);
     }

@@ -337,6 +337,7 @@
 						let html = '<div class="col-xl-3 col-lg-6 col-md-6">'
 								+ '<div class="prooduct-details-box">  '
 								+ '<div class="media">'
+								+ '<a href="product-single.html?gid=#{gid}&category_id=1">'
 								+ '<img src="#{image}" alt="图片无法加载或者商品已下架">'
 								+ '<div class="media-body ms-3">'
 								+ '<div class="product-name">'
@@ -356,6 +357,7 @@
 
 
 						html = html.replace(/#{tid}/g, list[i].tid);
+						html = html.replace(/#{gid}/g, list[i].gid);
 						html = html.replace(/#{image}/g, list[i].image);
 						html = html.replace(/#{title}/g, list[i].title);
 						html = html.replace(/#{price}/g, list[i].price);

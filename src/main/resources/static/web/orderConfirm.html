@@ -233,7 +233,12 @@
                         alert("创建订单成功！");
                         location.href = "paid-goods.html";
                     } else {
-                        alert("创建订单失败！" + json.message);
+                        if (json.message == "用户余额不足，请进行充值！"){
+                            alert("创建订单失败！" + json.message);
+                            location.href = "recharge.html";
+                        }else {
+                            alert("创建订单失败！" + json.message);
+                        }
                     }
                 },
                 error: function(xhr) {

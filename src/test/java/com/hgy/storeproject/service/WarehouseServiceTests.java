@@ -25,6 +25,12 @@ public class WarehouseServiceTests {
     }
 
     @Test
+    public void translateWarehouse(){
+        Warehouse warehouse = warehouseService.translateWarehouse(8,208);
+        System.out.println(warehouse);
+    }
+
+    @Test
     public void findWarehouseByUid(){
         List<Warehouse> warehouses = warehouseService.findWarehouseByUid(8);
         for (Warehouse item : warehouses){

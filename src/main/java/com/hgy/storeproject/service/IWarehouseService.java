@@ -14,6 +14,14 @@ public interface IWarehouseService {
     Warehouse createWarehouse(Integer uid,Integer mid);
 
     /**
+     * 创建个人仓库
+     * @param uid 用户id
+     * @param gid 已购商品id
+     * @return 成功创建的个人仓库数据
+     */
+    Warehouse translateWarehouse(Integer uid,Integer gid);
+
+    /**
      * 根据uid查找用户个人仓库的商品数据
      * @param uid 用户id
      * @return 该用户个人仓库的商品数据或者null

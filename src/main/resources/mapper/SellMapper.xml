@@ -33,7 +33,7 @@
     </insert>
 
     <select id="selectAllSell" resultMap="SellEntityMap">
-        SELECT * FROM sell
+        SELECT * FROM sell ORDER BY sid DESC
     </select>
 
     <delete id="deleteSellByGid">
