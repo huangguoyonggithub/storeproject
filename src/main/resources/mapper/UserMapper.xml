@@ -30,9 +30,9 @@
     -->
     <insert id="insert" useGeneratedKeys="true" keyProperty="uid">
         INSERT INTO
-        users (username, password, phone, email, salt, gender, created_time, created_user, modified_time, modified_user)
+        users (username, password, phone, email, salt, gender, introduction, wallet,created_time, created_user, modified_time, modified_user)
         VALUES
-        (#{username}, #{password}, #{phone}, #{email}, #{salt}, #{gender}, #{createdTime}, #{createdUser}, #{modifiedTime}, #{modifiedUser})
+        (#{username}, #{password}, #{phone}, #{email}, #{salt}, #{gender}, #{introduction}, #{wallet},#{createdTime}, #{createdUser}, #{modifiedTime}, #{modifiedUser})
     </insert>
 
     <!-- 根据用户名查询用户数据：User findByUsername(String username) -->

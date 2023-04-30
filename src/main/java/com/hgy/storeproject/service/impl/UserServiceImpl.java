@@ -44,6 +44,9 @@ public class UserServiceImpl implements IUserService {
         //将加密之后的密码重新补全设置到user对象中
         user.setPassword(md5Password);
 
+        //给新用户钱包一个默认值0
+        user.setWallet(0.0);
+
         //补全数据:4个日志字段信息
         // 创建当前时间对象
         Date now = new Date();

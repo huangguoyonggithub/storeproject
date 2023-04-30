@@ -43,13 +43,13 @@
                                 <div class="ad-auth-form">
                                     <div class="ad-auth-feilds mb-30">
                                         <input name="wid" type="number" placeholder="请输入商品id" class="ad-input" id="wid" style="display: none">
-                                        <input name="categoryId" type="number" placeholder="请输入分类号" class="ad-input" id="category-id">
+                                        <input name="categoryId" type="number" placeholder="请输入分类号" class="ad-input" id="category-id" style="display: none">
                                     </div>
                                     <div class="ad-auth-feilds mb-30">
-                                        <input name="goodType" type="text" placeholder="请输入类型" class="ad-input" id="goods-type">
+                                        <input name="goodType" type="text" placeholder="请输入类型" class="ad-input" id="goods-type" style="display: none">
                                     </div>
                                     <div class="ad-auth-feilds">
-                                        <input name="price" type="number" placeholder="请输入价格" class="ad-input" id="price">
+                                        价格：<input name="price" type="number" placeholder="请输入价格" class="ad-input" id="price">
                                     </div>
                                 </div>
 
@@ -81,8 +81,8 @@
                             $("#goods-image img").attr("src", json.data.image);
                             $("#goods-name").html(json.data.title);
                             $("#wid").val(json.data.wid);
-                            $("#category-id").val(json.data.categoryId);
-                            $("#goods-type").val(json.data.goodsType);
+                            $("#category-id").val(1);
+                            $("#goods-type").val("匕首");
                             $("#price").val(json.data.price);
                         } else {
                             alert("获取商品信息失败！" + json.message);

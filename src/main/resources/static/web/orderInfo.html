@@ -87,7 +87,8 @@
                                     <h1>订单详情：</h1>
                                     <h2 class="page-header">状态信息：</h2>
                                     <div class="state-bar">
-                                        当前状态：<span id="">已支付</span>
+                                        当前状态：<span style="color: #00acee">已支付</span>
+                                        所属的订单编号是：<span id="oid" style="color: #00acee;"></span>
                                     </div>
                                     <ol class="order-flow">
                                         <li class="order-success">1.提交订单 <small id="order-time">2023-4-2 20:32:17</small> <span class="fa fa-check-circle"></span></li>
@@ -150,6 +151,7 @@
         })
 
         let oid = $.getUrlParam("oid");
+        $("#oid").html(oid);
         function showOrderInformation() {
             $("#orders-item").empty();
             $.ajax({

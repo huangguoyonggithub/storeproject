@@ -30,10 +30,10 @@ public class UserServiceTests {
     public void reg() {
         try {
             User user = new User();
-            user.setUsername("hhh2");
+            user.setUsername("测试员1");
             user.setPassword("123");
             userService.reg(user);
-            System.out.println("OK!!!");
+            System.out.println("注册功能测试成功！");
         } catch (ServiceException e) {
             //获取类的对象，在获取类的名称
             System.out.println(e.getClass().getSimpleName());
@@ -44,8 +44,8 @@ public class UserServiceTests {
 
     @Test
     public void login(){
-        User user = userService.login("admin","321");
-        System.out.println(user);
+        User user = userService.login("测试员1","123");
+        System.out.println("登录成功！" + user);
     }
 
     @Test
