@@ -25,6 +25,13 @@ public interface WarehouseMapper {
     List<Warehouse> findWarehouseByUid(Integer uid);
 
     /**
+     * 根据交易码查询仓库装备数据
+     * @param status 交易码
+     * @return 仓库装备数据或者null
+     */
+    Warehouse findWarehouseByStatus(String status);
+
+    /**
      * 通过交易码获取商品到个人仓库(原理：由于设计数据库时把所有的用户个人仓库都放在一起了，所以只要修改装备的用户即可)
      * @param uid 用户id（表示谁使用的交易码）
      * @param status 装备交易码

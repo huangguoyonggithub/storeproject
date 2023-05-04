@@ -35,6 +35,10 @@
         SELECT * FROM warehouse WHERE uid = #{uid} ORDER BY wid DESC
     </select>
 
+    <select id="findWarehouseByStatus" resultMap="WarehouseEntityMap">
+        SELECT * FROM warehouse WHERE status = #{status}
+    </select>
+
     <update id="updateWarehouseGoodsUser">
         UPDATE warehouse SET uid = #{uid},
         modified_user = #{modifiedUser},

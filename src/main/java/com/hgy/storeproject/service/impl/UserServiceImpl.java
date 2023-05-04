@@ -23,17 +23,12 @@ public class UserServiceImpl implements IUserService {
         String username = user.getUsername();
         // 调用持久层的User findByUsername(String username)方法，根据用户名查询用户数据
         User result = userMapper.findByUsername(username);
-
         // 判断查询结果是否不为null
         if (result != null) {
             // 是：表示用户名已被占用，则抛出UsernameDuplicateException异常
             throw new UsernameDuplicatedException("尝试注册的用户名[" + username + "]已经被占用");
         }
-
-        // 补全数据：加密后的密码
-        //密码加密处理的实现: md5算法的形式:67dhdsgh-yeuwrey121-yerui374-yrwirnei-67123
-        //〔串 + password +串) ---- md5算法进行加密，连续加载三次
-        //盐值+password +盐值----盐值就是一个随机的字符串
+        //获取输入密码
         String oldPassword = user.getPassword();
         //获取盐值(随机生成一个盐值)
         String salt = UUID.randomUUID().toString().toUpperCase();
@@ -43,10 +38,8 @@ public class UserServiceImpl implements IUserService {
         String md5Password = getMd5Password(oldPassword,salt);
         //将加密之后的密码重新补全设置到user对象中
         user.setPassword(md5Password);
-
         //给新用户钱包一个默认值0
         user.setWallet(0.0);
-
         //补全数据:4个日志字段信息
         // 创建当前时间对象
         Date now = new Date();
@@ -54,9 +47,6 @@ public class UserServiceImpl implements IUserService {
         user.setCreatedUser(username);
         user.setModifiedTime(now);
         user.setModifiedUser(username);
-
-        //执行注册业务功能的实现（row==1）
-        // 表示用户名没有被占用，则允许注册
         // 调用持久层Integer insert(User user)方法，执行注册并获取返回值(受影响的行数)
         Integer rows = userMapper.insert(user);
         // 判断受影响的行数是否不为1

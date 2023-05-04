@@ -8,10 +8,7 @@ import com.hgy.storeproject.service.ICartService;
 import com.hgy.storeproject.service.IOrderService;
 import com.hgy.storeproject.service.IUserService;
 import com.hgy.storeproject.service.IWarehouseService;
-import com.hgy.storeproject.service.ex.DeleteException;
-import com.hgy.storeproject.service.ex.InsertException;
-import com.hgy.storeproject.service.ex.OrderItemNotFoundException;
-import com.hgy.storeproject.service.ex.UserNotFoundException;
+import com.hgy.storeproject.service.ex.*;
 import com.hgy.storeproject.vo.CartVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -141,6 +138,11 @@ public class WarehouseServiceImpl implements IWarehouseService {
         User user = userService.getByUid(uid);
         if (user == null){
             throw new UserNotFoundException("没有用户登录异常");
+        }
+
+        Warehouse warehouse = warehouseMapper.findWarehouseByStatus(status);
+        if (warehouse == null){
+            throw new WarehouseGoodsNotFoundException("仓库装备不存在异常");
         }
 
         return warehouseMapper.updateWarehouseGoodsUser(uid,status,user.getUsername(),new Date());
